@@ -1,99 +1,143 @@
 body {
-    padding: 0;
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
+  padding: 0;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
 }
-/* La barre de navigation */
+
 nav {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    background-color: black;
-    color: #fff;
- 
-    position: absolute;
-    width: 100%;
+  display: flex;
+  align-items: center;
+  background-color: #000;
+  color: #919090;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2;
 }
 
-    nav .gauche {
-        display: flex;
-        flex-wrap: wrap;
-    }
+nav .gauche {
+  display: flex;
+  align-items: center;
+}
 
-        nav .gauche img {
-            padding-top: 5px;
-        }
+nav .droite {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  margin-right: 20px;
+}
 
-        nav .gauche .onglets {
-            display: flex;
-            flex-wrap: wrap;
-            margin-left: 10px;
-        }
+nav .gauche .onglets a:first-child {
+  color: #ff0000; /* Couleur du bouton Accueil */
+}
 
-            nav .gauche .onglets p {
-                margin-left: 10px;
-                cursor: pointer;
-                color: #909191;
-            }
+nav .droite p:last-child {
+  color: #ff0000; /* Couleur du bouton Mon compte */
+}
 
-                nav .gauche .onglets p:hover {
-                    color: #fff;
-                }
+nav .onglets a,
+nav .droite a.compte {
+  display: block;
+  margin: 0 10px;
+  color: #ffffff;
+  text-decoration: none;
+  transition: color 0.3s;
+}
 
-    nav .droite {
-        display: flex;
-        flex-wrap: wrap;
-    }
+nav .onglets a:hover,
+nav .droite a.compte:hover {
+  color: #ff0000;
+}
 
-        nav .droite p {
-            margin-right: 30px;
-            cursor: pointer;
-        }
-/* Fin de la barre de navigation */
-
-/* Les films et séries */
 .films-et-series {
-    background-color: #242424;
-    padding: flex;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #242424;
+  padding: 20px;
+  color: #fff;
 }
+
+.vidéo-conteneur {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* Rapport d'aspect 16:9 */
+  overflow: hidden;
+}
+
+.vidéo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.episode-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
 .styled {
-    border: 0;
-    line-height: 2.5;
-    padding: 0 20px;
-    font-size: 1rem;
-    text-align: center;
-    color: #fff;
-    text-shadow: 1px 1px 1px #000;
-    border-radius: 10px;
-    background-color: rgba(220, 0, 0, 1);
-    background-image: linear-gradient(to top left, rgba(0, 0, 0, .2), rgba(0, 0, 0, .2) 30%, rgba(0, 0, 0, 0));
-    box-shadow: inset 2px 2px 3px rgba(255, 255, 255, .6), inset -2px -2px 3px rgba(0, 0, 0, .6);
+  border: 0;
+  line-height: 2.5;
+  padding: 0 20px;
+  font-size: 1rem;
+  text-align: center;
+  color: #fff;
+  text-shadow: 1px 1px 1px #000;
+  border-radius: 10px;
+  background-color: rgba(220, 0, 0, 1);
+  background-image: linear-gradient(to top left, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) 30%, rgba(0, 0, 0, 0));
+  box-shadow: inset 2px 2px 3px rgba(255, 255, 255, 0.6), inset -2px -2px 3px rgba(0, 0, 0, 0.6);
 }
 
-    .styled:hover {
-        background-color: rgba(255, 0, 0, 1);
-    }
+.styled:hover {
+  background-color: rgba(255, 0, 0, 1);
+}
 
-    .styled:active {
-        box-shadow: inset -2px -2px 3px rgba(255, 255, 255, .6), inset 2px 2px 3px rgba(0, 0, 0, .6);
-    }
-/* Fin des films et séries */
+.styled:active {
+  box-shadow: inset -2px -2px 3px rgba(255, 255, 255, 0.6), inset 2px 2px 3px rgba(0, 0, 0, 0.6);
+}
 
-/* Pied de page */
 footer {
-    background-color: #000;
-    padding: flex;
-    color: #909191;
+  background-color: #000;
+  padding: 20px;
+  color: #909191;
 }
 
-    footer .colonnes {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-    }
-/* Fin du pied de page */
-video {
-    width: 50%;
-    padding-left: 100px;
-    padding-top: 100px;
+footer .colonnes {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
 }
