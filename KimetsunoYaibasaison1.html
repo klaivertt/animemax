@@ -1,23 +1,132 @@
 ﻿<!DOCTYPE html>
-
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en">
 <head>
     <title>Anime Max</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="css/choix.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
     <link rel="icon" href="https://i.ibb.co/x5VrKjd/animemaxred1.png">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
 
+        nav {
+            background-color: black;
+            color: #323232;
+        }
+
+        nav .gauche {
+            display: flex;
+            align-items: center;
+        }
+
+        nav .gauche img {
+            padding-top: 5px;
+            height: 80%;
+        }
+
+        nav .gauche .onglets {
+            margin-left: 10px;
+        }
+
+        nav .gauche .onglets p {
+            margin: 0 10px;
+            cursor: pointer;
+            color: #909191;
+        }
+
+        nav .gauche .onglets p:hover {
+            color: #fff;
+        }
+
+        nav .droite {
+            display: flex;
+            align-items: center;
+        }
+
+        nav .droite p {
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .films-et-series {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            align-items: center;
+            padding: 20px;
+            background-color: #242424;
+            color: #fff;
+        }
+
+        .vidéo-conteneur {
+            position: relative;
+            padding-bottom: 56.25%; /* Rapport d'aspect 16:9 */
+            overflow: hidden;
+        }
+
+        .vidéo {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .episode-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .favorite.styled {
+            border: 0;
+            line-height: 2.5;
+            padding: 0 20px;
+            font-size: 1rem;
+            text-align: center;
+            color: #fff;
+            text-shadow: 1px 1px 1px #000;
+            border-radius: 10px;
+            background-color: rgba(220, 0, 0, 1);
+            background-image: linear-gradient(to top left, rgba(0, 0, 0, .2), rgba(0, 0, 0, .2) 30%, rgba(0, 0, 0, 0));
+            box-shadow: inset 2px 2px 3px rgba(255, 255, 255, .6), inset -2px -2px 3px rgba(0, 0, 0, .6);
+        }
+
+        .favorite.styled:hover {
+            background-color: rgba(255, 0, 0, 1);
+        }
+
+        .favorite.styled:active {
+            box-shadow: inset -2px -2px 3px rgba(255, 255, 255, .6), inset 2px 2px 3px rgba(0, 0, 0, .6);
+        }
+
+        footer {
+            background-color: #000;
+            padding: 20px;
+            color: #909191;
+        }
+
+        footer .colonnes {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+    </style>
 </head>
 <body>
-
     <nav>
-
         <div class="gauche">
-            <a href="index.html"><img src="https://i.ibb.co/x5VrKjd/animemaxred1.png" alt="logo" height="80%"></a>
+            <a href="index.html">
+                <img src="https://i.ibb.co/x5VrKjd/animemaxred1.png" alt="logo">
+            </a>
             <div class="onglets">
-                <a href="index.html"><p>Accueil</p></a>
-
+                <a href="index.html">
+                    <p>Accueil</p>
+                </a>
             </div>
         </div>
         <div class="droite">
@@ -26,54 +135,48 @@
             <p>Mon compte</p>
         </div>
     </nav>
+    
     <section class="films-et-series">
-        <video class="video" controls width="250">
-
-        </video>
-        <a href="KimetsunoYaibaEP1.html">
-            <input class="favorite styled"
-                   type="button"
-                   value="Episode 1"><
-        </a>
-        <a href="KimetsunoYaibaEP2.html">
-            <input class="favorite styled"
-                   type="button"
-                   value="Episode 2"><
-        </a>
-        
-
-        
-        
-        <section class="films-et-series">
-            <footer>
-                <h5>Des questions ? </h5>
-                <div class="colonnes">
-                    <div class="colonne">
-                        <p>FAQ</p>
-                        <p>Relations Investisseurs</p>
-                        <p>Modes de lecture</p>
-                        <p>Mentions légales</p>
-                    </div>
-                    <div class="colonne">
-                        <p>Centre d'aide</p>
-                        <p>Relations Investisseurs</p>
-                        <p>Modes de lecture</p>
-
-                    </div>
-                    <div class="colonne">
-                        <p>FAQ</p>
-                        <p>Recrutement</p>
-                        <p>Conditions d'utilisation</p>
-                        <p>Nous contacter</p>
-                    </div>
-                    <div class="colonne">
-                        <p>Compte</p>
-                        <p>Confidentialité</p>
-                        <p>Test de vitesse</p>
-                    </div>
-                </div>
-                <p> Anime Max, France</p>
-            </footer>
-<div style="background-color:black"></div>
+        <div class="vidéo-conteneur">
+            <iframe class="vidéo" src="https://www.youtube.com/embed/Ogr9pOY8Wew" title="Demon Slayer: Kimetsu no Yaiba | TRAILER OFFICIEL" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+        <div class="episode-buttons">
+            <a href="KimetsunoYaibaEP1.html">
+                <input class="favorite styled" type="button" value="Episode 1">
+            </a>
+            <a href="KimetsunoYaibaEP2.html">
+                <input class="favorite styled" type="button" value="Episode 2">
+            </a>
+        </div>
+    </section>
+    
+    <footer>
+        <h5>Des questions ?</h5>
+        <div class="colonnes">
+            <div class="colonne">
+                <p>FAQ</p>
+                <p>Relations Investisseurs</p>
+                <p>Modes de lecture</p>
+                <p>Mentions légales</p>
+            </div>
+            <div class="colonne">
+                <p>Centre d'aide</p>
+                <p>Relations Investisseurs</p>
+                <p>Modes de lecture</p>
+            </div>
+            <div class="colonne">
+                <p>FAQ</p>
+                <p>Recrutement</p>
+                <p>Conditions d'utilisation</p>
+                <p>Nous contacter</p>
+            </div>
+            <div class="colonne">
+                <p>Compte</p>
+                <p>Confidentialité</p>
+                <p><a href="https://www.speedtest.net/">Test de vitesse</a></p>
+            </div>
+        </div>
+        <p>Anime Max, France</p>
+    </footer>
 </body>
 </html>
