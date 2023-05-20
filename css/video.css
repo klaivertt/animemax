@@ -1,0 +1,135 @@
+body {
+    padding: 0;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  nav {
+    display: flex;
+    align-items: center; /* Centrer les éléments verticalement */
+    background-color: #000; /* Changer la couleur de fond de la barre de navigation */
+    color: #909191;
+    position: fixed; /* Position fixe pour rester visible en haut de la fenêtre */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2; /* Définir un z-index supérieur à celui de la vidéo */
+  }
+  
+  nav .gauche {
+    display: flex;
+    align-items: center;
+  }
+  
+  nav .droite {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    margin-right: 20px; /* Ajouter une marge à droite pour espacer les éléments de droite */
+  }
+  
+  nav .onglets a {
+    display: block;
+    margin: 0 10px;
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .films-et-series {
+    background-color: #242424;
+    padding: 0;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+  
+
+section.films-et-series {
+    /* ... autres styles ... */
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .vidéo-conteneur {
+    position: absolute;
+    top: 35%;
+    left: 35%;
+    transform: translate(-35%, -50%);
+    width: 100%;
+    height: 100%;
+    max-height: calc(100vh - 100px); /* Ajuster en fonction de la hauteur de la barre de navigation */
+    overflow: hidden;
+  }
+  
+  .vidéo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .episode-buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .styled {
+    border: 0;
+    line-height: 2.5;
+    padding: 0 20px;
+    font-size: 1rem;
+    text-align: center;
+    color: #fff;
+    text-shadow: 1px 1px 1px #000;
+    border-radius: 10px;
+    background-color: rgba(220, 0, 0, 1);
+    background-image: linear-gradient(to top left, rgba(0, 0, 0, .2), rgba(0, 0, 0, .2) 30%, rgba(0, 0, 0, 0));
+    box-shadow: inset 2px 2px 3px rgba(255, 255, 255, .6), inset -2px -2px 3px rgba(0, 0, 0, .6);
+  }
+  
+  .styled:hover {
+    background-color: rgba(255, 0, 0, 1);
+  }
+  
+  .styled:active {
+    box-shadow: inset -2px -2px 3px rgba(255, 255, 255, .6), inset 2px 2px 3px rgba(0, 0, 0, .6);
+  }
+  
+  footer {
+    background-color: #000;
+    padding: 5px;
+    color: #909191;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2;
+  }
+  
+  footer .colonnes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  footer .colonne {
+    flex-basis: 12%;
+    max-width: 15%;
+  }
+  
+  footer .colonne p {
+    margin: 2px 0;
+    font-size: 0.6rem;
+  }
+  
+  
