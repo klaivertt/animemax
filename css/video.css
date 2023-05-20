@@ -32,12 +32,18 @@ body {
     margin-right: 20px; /* Ajouter une marge à droite pour espacer les éléments de droite */
   }
   
-  nav .onglets a {
+  nav .onglets a, nav .droite a.compte {
     display: block;
     margin: 0 10px;
-    color: #fff;
+    color: #ffffff;
     text-decoration: none;
-  }
+    transition: color 0.3s;
+}
+
+nav .onglets a:hover, nav .droite a.compte:hover {
+    color: #ff0000;
+}
+
   
   .films-et-series {
     background-color: #242424;

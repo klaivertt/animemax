@@ -6,28 +6,38 @@
     <link rel="stylesheet" href="css/video.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
     <link rel="icon" href="https://i.ibb.co/x5VrKjd/animemaxred1.png">
+    <style>
+        /* ... Vos styles CSS existants ... */
+        nav .onglets a {
+          display: block;
+          margin: 0 10px;
+          color: #fff;
+          text-decoration: none;
+          transition: color 0.3s;
+        }
+      
+        nav .onglets a:hover {
+          color: #ff0000;
+        }
+    </style>
 </head>
 <body>
     <nav>
         <div class="gauche">
-            <a href="index.html">
-                <img src="https://i.ibb.co/x5VrKjd/animemaxred1.png" alt="logo" height="80%">
-            </a>
-        <div class="onglets">
-            <a href="index.html">
-                <p>Accueil</p>
-            </a>
-        </div>
+          <a href="index.html"><img src="https://i.ibb.co/x5VrKjd/animemaxred1.png" alt="logo" height="80%"></a>
+          <div class="onglets">
+            <a href="index.html"><p>Accueil</p></a>
+          </div>
         </div>
         <div class="droite">
-            <p><i class="fas fa-search"></i></p>
-            <p><i class="fas fa-bell"></i></p>
-            <p>Mon compte</p>
+          <p><i class="fas fa-search"></i></p>
+          <p><i class="fas fa-bell"></i></p>
+          <p><a href="profil.html" class="compte">Mon compte</a></p>
         </div>
-    </nav>
+      </nav>
     <section class="films-et-series">
         <div class="vidéo-conteneur">
-            <iframe class="vidéo" loading="lazy" src="https://vidmoly.to/embed-x023v1eh87hx.html" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe></div>
+            <iframe class='vidéo' loading="lazy" src="https://vidmoly.to/embed-x023v1eh87hx.html" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe></div>
     </section>
     <footer>
         <h5>Des questions ?</h5>
