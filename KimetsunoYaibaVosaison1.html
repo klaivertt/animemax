@@ -1,0 +1,166 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Anime Max</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/video.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
+    <link rel="icon" href="https://i.ibb.co/x5VrKjd/animemaxred1.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        nav .onglets a {
+          display: block;
+          margin: 0 10px;
+          color: #ffffff;
+          text-decoration: none;
+          transition: color 0.3s;
+        }
+      
+        nav .onglets a:hover {
+          color: #ff0000;
+        }
+
+        footer {
+          background-color: #000;
+          padding: 10px 10%;
+          color: #909191;
+          position: fixed;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          font-size: 16px;
+          font-family: Arial, Helvetica, sans-serif;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+
+        footer .colonne p {
+          margin: 2px 0;
+          font-size: 1.2rem;
+          width: 100%;
+          font-family: Arial, Helvetica, sans-serif;
+          color: #ffffff;
+          align-items: center;
+        }
+
+        footer .colonne p,
+        footer .colonne a {
+          font-family: Arial, Helvetica, sans-serif;
+          color: #ffffff;
+        }
+
+        footer .colonne p:hover,
+        footer .colonne a:hover {
+          color: #ff0000;
+          text-decoration: none;
+        }
+
+        .compte {
+          color: #fff;
+          font-size: 20px;
+          font-weight: bold;
+        }
+
+        .episode-buttons {
+          position: absolute;
+          top: 0px;
+          left: 20px;
+          display: flex;
+          justify-content: flex-start;
+          z-index: 1;
+          margin-top: 30px;
+        }
+
+        .styled {
+          border: 0;
+          line-height: 2.5;
+          padding: 0 20px;
+          font-size: 1rem;
+          text-align: center;
+          color: #ffffff;
+          text-shadow: 1px 1px 1px #000;
+          border-radius: 10px;
+          background-color: rgba(220, 0, 0, 1);
+          background-image: linear-gradient(to top left, rgba(0, 0, 0, .2), rgba(0, 0, 0, .2) 30%, rgba(0, 0, 0, 0));
+          box-shadow: inset 2px 2px 3px rgba(255, 255, 255, .6), inset -2px -2px 3px rgba(0, 0, 0, .6);
+          border: none;
+        }
+
+        .styled:hover {
+          background-color: rgba(255, 0, 0, 1);
+        }
+
+        .styled:active {
+          box-shadow: inset -2px -2px 3px rgba(255, 255, 255, .6), inset 2px 2px 3px rgba(0, 0, 0, .6);
+        }
+
+        .vidéo-conteneur iframe {
+          border: none;
+        }
+    </style>
+</head>
+<body>
+  <nav>
+    <div class="gauche">
+      <a href="index.html"><img src="https://i.ibb.co/x5VrKjd/animemaxred1.png" alt="logo" height="80%"></a>
+      <div class="onglets">
+        <a href="index.html"><p>Accueil</p></a>
+      </div>
+    </div>
+    <div class="droite">
+      <p><i class="fas fa-search"></i></p>
+      <p><i class="fas fa-bell"></i></p>
+      <p><a href="profil.html" class="compte">Mon compte</a></p>
+    </div>
+  </nav>
+  <section class="episode-buttons">
+    <div class="episode-buttons">
+      <select id="episode-select" class="styled">
+        <option value="https://vidmoly.to/embed-x023v1eh87hx.html">Episode 1</option>
+        <option value="https://vidmoly.to/embed-fl9v0rpconti.html">Episode 2</option>
+        <option value="https://vidmoly.to/embed-fa6w6ciur469.html">Episode 3</option>
+        <option value="https://vidmoly.to/embed-soq9swqnvqla.html">Episode 4</option>
+      </select>
+    </div>
+  </section>
+  <section class="films-et-series"">
+    <div class="vidéo-conteneur">
+      <iframe class='vidéo' loading="lazy" src="https://vidmoly.to/embed-x023v1eh87hx.html" scrolling="no" frameborder="5" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+    </div>
+  </section>
+  <footer>
+    <h5>Des questions ?</h5>
+    <div class="colonnes">
+      <div class="colonne">
+        <p>FAQ</p>
+        <p>Centre d'aide</p>
+      </div>
+      <div class="colonne">
+        <p>Relations Investisseurs</p>
+        <p>Modes de lecture</p>
+        <p>Conditions d'utilisation</p>
+      </div>
+      <div class="colonne">
+        <p>Mentions légales</p>
+        <p>Nous contacter</p>
+        <p>Confidentialité</p>
+      </div>
+      <div class="colonne">
+        <p><a href="https://www.speedtest.net/">Test de vitesse</a></p>
+      </div>
+    </div>
+    <div class="clearfix"></div>
+    <p class="full-width">Anime Max, France</p>
+  </footer>
+  <script>
+    const episodeSelect = document.getElementById('episode-select');
+    const videoContainer = document.querySelector('.vidéo-conteneur');
+    
+    episodeSelect.addEventListener('change', () => {
+        const selectedEpisode = episodeSelect.value;
+        videoContainer.innerHTML = `<iframe class='vidéo' loading="lazy" src="${selectedEpisode}" scrolling="no" frameborder="0" width="700" height="430" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>`;
+    });
+  </script>
+</body>
+</html>

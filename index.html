@@ -2,6 +2,7 @@
   <head>
     <title>Anime Max</title>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/acceuil.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
     <link rel="icon" href="https://i.ibb.co/pzb7pxM/animemaxred.png">
@@ -19,14 +20,32 @@
         </div>
       </nav>
     <style>
+
+body::-webkit-scrollbar {
+  width: 0.5em;
+}
+
+body::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #888;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
   /* ... Vos styles CSS existants ... */
   nav .onglets a {
-    display: block;
-    margin: 0 10px;
-    color: #fff;
-    text-decoration: none;
-    transition: color 0.3s;
-  }
+            display: block;
+            margin: 0 10px;
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 20px; /* Augmenter la taille du texte */
+            font-weight: bold; /* Mettre le texte en gras */
+        }
 
   nav .onglets a:hover {
     color: #ff0000;
@@ -45,6 +64,48 @@
     height: auto;
     object-fit: cover;
   }
+  footer {
+        background-color: #000;
+        padding: 10px 10%;
+        color: #909191;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        font-size: 16px;
+        font-family: Arial, Helvetica, sans-serif; /* Ajout de la police */
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      footer .colonne p {
+        margin: 2px 0;
+        font-size: 1.2rem;
+        width: 100%;
+        font-family: Arial, Helvetica, sans-serif; /* Ajout de la police */
+        color: #ffffff;
+        align-items: center; /* Centrer verticalement le texte */
+      }
+
+      footer .colonne p,
+      footer .colonne a {
+        /* ... styles existants ... */
+        font-family: Arial, Helvetica, sans-serif; /* Ajout de la police */
+        color: #ffffff; /* Couleur de texte */
+      }
+
+      footer .colonne p:hover,footer .colonne a:hover {
+        color: #ff0000;
+        text-decoration: none; /* Supprimer le soulignement */
+      }
+
+      .compte {
+    color: #fff; /* Couleur du texte */
+    font-size: 20px; /* Taille du texte */
+    font-weight: bold; /* Mettre le texte en gras */
+  }
+
 </style>
   </head>
   <body>
@@ -76,7 +137,7 @@
       <section class="seriefonctionne">
         <h2>Serie fonctionel</h2>
         <div class="liste">
-          <a href="KimetsunoYaibasaison1.html"><img src="img/thumbnails/Kimetsu no Yaiba saison 1.jpg" alt=""></a>
+          <a href="KimetsunoYaiba.html"><img src="img/thumbnails/Kimetsu no Yaiba saison 1.jpg" alt=""></a>
           <a href="nagatoro.html"><img src="img/thumbnails/nagatoro/affiche_370x0.jpg" alt=""></a>
         </div>
       </section>
@@ -94,35 +155,30 @@
       </section>
       
 
-      <!-- Pied de page -->
       <footer>
         <h5>Des questions ?</h5>
         <div class="colonnes">
           <div class="colonne">
             <p>FAQ</p>
-            <p>Relations Investisseurs</p>
-            <p>Modes de lecture</p>
-            <p>Mentions légales</p>
-          </div>
-          <div class="colonne">
             <p>Centre d'aide</p>
+          </div>
+          <div class="colonne">
             <p>Relations Investisseurs</p>
             <p>Modes de lecture</p>
-          </div>
-          <div class="colonne">
-            <p>FAQ</p>
             <p>Conditions d'utilisation</p>
-            <p>Nous contacter</p>
           </div>
           <div class="colonne">
-            <p>Compte</p>
+            <p>Mentions légales</p>
+            <p>Nous contacter</p>
             <p>Confidentialité</p>
+          </div>
+          <div class="colonne">
             <p><a href="https://www.speedtest.net/">Test de vitesse</a></p>
           </div>
         </div>
-        <p> Anime Max, France</p>
+        <div class="clearfix"></div> <!-- Ajout d'un élément de clearing -->
+        <p class="full-width">Anime Max, France</p> <!-- Ajout d'une classe "full-width" -->
       </footer>
       <!-- Fin du pied de page -->
-    </section>
   </body>
 </html>

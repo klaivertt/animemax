@@ -4,11 +4,40 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+nav .onglets a {
+  display: block;
+  margin: 0 10px;
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s;
+  font-size: 20px; /* Augmenter la taille du texte */
+  font-weight: bold; /* Mettre le texte en gras */
+}
+
+nav .onglets a:hover {
+color: #ff0000;
+}
+
+.episode-buttons {
+  margin-top: 100px; /* Ajustez cette valeur selon vos besoins */
+}
+
+.films-et-series {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #242424;
+  padding: 20px;
+  color: #fff;
+  margin-top: 160px; /* Ajustez cette valeur pour aligner correctement le contenu */
+
+}
+
 nav {
   display: flex;
   align-items: center;
   background-color: #000;
-  color: #919090;
+  color: #909191;
   position: fixed;
   top: 0;
   left: 0;
@@ -19,6 +48,8 @@ nav {
 nav .gauche {
   display: flex;
   align-items: center;
+  flex-grow: 1;
+  overflow: hidden; /* Ajoute une gestion de débordement pour le contenu de gauche */
 }
 
 nav .droite {
@@ -26,37 +57,23 @@ nav .droite {
   align-items: center;
   margin-left: auto;
   margin-right: 20px;
-}
-
-nav .gauche .onglets a:first-child {
-  color: #ff0000; /* Couleur du bouton Accueil */
-}
-
-nav .droite p:last-child {
-  color: #ff0000; /* Couleur du bouton Mon compte */
+  overflow: hidden; /* Ajoute une gestion de débordement pour le contenu de droite */
 }
 
 nav .onglets a,
 nav .droite a.compte {
   display: block;
   margin: 0 10px;
-  color: #ffffff;
+  color: #fff;
   text-decoration: none;
   transition: color 0.3s;
+  white-space: nowrap; /* Empêche le texte de se retourner à la ligne */
+  overflow: hidden; /* Ajoute une gestion de débordement pour le texte */
 }
 
 nav .onglets a:hover,
 nav .droite a.compte:hover {
   color: #ff0000;
-}
-
-.films-et-series {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #242424;
-  padding: 20px;
-  color: #fff;
 }
 
 .vidéo-conteneur {
@@ -132,12 +149,122 @@ nav .droite a.compte:hover {
 
 footer {
   background-color: #000;
-  padding: 20px;
+  padding: 10px 10%;
   color: #909191;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  font-size: 16px;
+  font-family: Arial, Helvetica, sans-serif; /* Ajout de la police */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+footer .colonne p {
+  margin: 2px 0;
+  font-size: 1.2rem;
+  width: 100%;
+  font-family: Arial, Helvetica, sans-serif; /* Ajout de la police */
+  color: #ffffff;
+  align-items: center; /* Centrer verticalement le texte */
+}
+
+footer .colonne p,
+footer .colonne a {
+  /* ... styles existants ... */
+  font-family: Arial, Helvetica, sans-serif; /* Ajout de la police */
+  color: #ffffff; /* Couleur de texte */
+}
+
+footer .colonne p:hover,footer .colonne a:hover {
+  color: #ff0000;
+  text-decoration: none; /* Supprimer le soulignement */
+}
+
+footer {
+  background-color: #000;
+  padding: 10px 10%;
+  color: #909191;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  font-size: 16px; /* Augmentation de la taille de la police */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 footer .colonnes {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
+  display: flex;
+  align-items: flex-start;
+  width: 70%;
+  margin: 0 auto;
+}
+
+footer .colonne {
+  flex-basis: 0;
+  flex-grow: 1;
+  margin: 0 10px;
+}
+
+footer .colonne:last-child {
+  margin-right: 0;
+}
+
+footer .colonne p {
+  margin: 2px 0;
+  font-size: 1.2rem; /* Ajustement de la taille de la police */
+  width: 100%;
+}
+footer .colonne a {
+  /* ... styles existants ... */
+  text-decoration: none; /* Supprimer le soulignement */
+}
+footer .full-width {
+  flex-grow: 1; /* Utilise tout l'espace disponible */
+  text-align: justify; /* Justification du texte */
+}
+
+footer .clearfix {
+  clear: both;
+}
+
+.compte {
+color: #fff; /* Couleur du texte */
+font-size: 20px; /* Taille du texte */
+font-weight: bold; /* Mettre le texte en gras */
+}
+
+/* Styles pour les écrans de petite taille (téléphones) */
+@media only screen and (max-width: 600px) {
+  nav .gauche,
+  nav .droite {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav .droite {
+    margin-top: 10px;
+  }
+
+  nav .onglets a,
+  nav .droite a.compte {
+    margin: 5px 0;
+  }
+
+  .video-conteneur {
+    max-height: 30vh;
+  }
+
+  .liste a {
+    flex: 0 0 50%;
+  }
+
+  footer .colonnes {
+    flex-direction: column;
+    align-items: center;
+  }
 }
