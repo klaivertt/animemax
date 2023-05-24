@@ -6,9 +6,7 @@ body {
 }
 
 nav {
-  display: -webkit-box;
   display: flex;
-  -webkit-box-align: center;
   align-items: center;
   background-color: #000;
   color: #909191;
@@ -20,31 +18,14 @@ nav {
 }
 
 nav .gauche {
-  display: -webkit-box;
   display: flex;
-  -webkit-box-align: center;
   align-items: center;
-  -webkit-box-flex: 1;
   flex-grow: 1;
   overflow: hidden;
-  -webkit-box-flex: 0;
-  -webkit-flex-shrink: 0;
-  flex-shrink: 0;
-  flex-grow: 1;
 }
 
 nav .droite {
-  display: -webkit-box;
   display: flex;
-  -webkit-box-align: center;
-  align-items: center;
-  margin-left: auto;
-  margin-right: 20px;
-  overflow: hidden;
-  -webkit-flex-shrink: 1;
-  flex-shrink: 1;
-  display: flex;
-  -webkit-box-align: center;
   align-items: center;
   margin-left: auto;
   margin-right: 20px;
@@ -57,7 +38,6 @@ nav .droite a.compte {
   margin: 0 10px;
   color: #fff;
   text-decoration: none;
-  -webkit-transition: color 0.3s;
   transition: color 0.3s;
   white-space: nowrap;
   overflow: hidden;
@@ -148,8 +128,6 @@ footer .colonne {
   flex-basis: 0;
   flex-grow: 1;
   margin: 0 10px;
-  -webkit-box-flex: 0;
-  -webkit-flex-grow: 1;
   display: flex;
   align-items: flex-start;
   width: 70%;
@@ -208,12 +186,12 @@ footer .clearfix {
     align-items: center;
   }
 }
-@media only screen and (max-width: 600px) {
-  nav {
-    width: 100vw;
-  }
 
-  footer {
-    width: 100vw;
+/* Ajoutez ce bloc pour ajuster la taille de la police sur les appareils iOS récents */
+@media only screen and (-webkit-min-device-pixel-ratio: 2) and (max-width: 600px), (width: 375px) and (height: 812px) {
+  nav .onglets a,
+  nav .droite a.compte,
+  footer .colonne p {
+    font-size: 14px;
   }
 }
