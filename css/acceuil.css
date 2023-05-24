@@ -6,7 +6,9 @@ body {
 }
 
 nav {
+  display: -webkit-box; /* Ajout du préfixe pour iOS et Safari */
   display: flex;
+  -webkit-box-align: center; /* Ajout du préfixe pour iOS et Safari */
   align-items: center;
   background-color: #000;
   color: #909191;
@@ -18,14 +20,19 @@ nav {
 }
 
 nav .gauche {
+  display: -webkit-box; /* Ajout du préfixe pour iOS et Safari */
   display: flex;
+  -webkit-box-align: center; /* Ajout du préfixe pour iOS et Safari */
   align-items: center;
+  -webkit-box-flex: 1; /* Ajout du préfixe pour iOS et Safari */
   flex-grow: 1;
   overflow: hidden; /* Ajoute une gestion de débordement pour le contenu de gauche */
 }
 
 nav .droite {
+  display: -webkit-box; /* Ajout du préfixe pour iOS et Safari */
   display: flex;
+  -webkit-box-align: center; /* Ajout du préfixe pour iOS et Safari */
   align-items: center;
   margin-left: auto;
   margin-right: 20px;
@@ -38,6 +45,7 @@ nav .droite a.compte {
   margin: 0 10px;
   color: #fff;
   text-decoration: none;
+  -webkit-transition: color 0.3s; /* Ajout du préfixe pour iOS et Safari */
   transition: color 0.3s;
   white-space: nowrap; /* Empêche le texte de se retourner à la ligne */
   overflow: hidden; /* Ajoute une gestion de débordement pour le texte */
