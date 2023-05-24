@@ -2,13 +2,13 @@ body {
   padding: 0;
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
-  overflow-x: hidden; /* Masque la barre de défilement horizontale */
+  overflow-x: hidden;
 }
 
 nav {
-  display: -webkit-box; /* Ajout du préfixe pour iOS et Safari */
+  display: -webkit-box;
   display: flex;
-  -webkit-box-align: center; /* Ajout du préfixe pour iOS et Safari */
+  -webkit-box-align: center;
   align-items: center;
   background-color: #000;
   color: #909191;
@@ -20,23 +20,35 @@ nav {
 }
 
 nav .gauche {
-  display: -webkit-box; /* Ajout du préfixe pour iOS et Safari */
+  display: -webkit-box;
   display: flex;
-  -webkit-box-align: center; /* Ajout du préfixe pour iOS et Safari */
+  -webkit-box-align: center;
   align-items: center;
-  -webkit-box-flex: 1; /* Ajout du préfixe pour iOS et Safari */
+  -webkit-box-flex: 1;
   flex-grow: 1;
-  overflow: hidden; /* Ajoute une gestion de débordement pour le contenu de gauche */
+  overflow: hidden;
+  -webkit-box-flex: 0;
+  -webkit-flex-shrink: 0;
+  flex-shrink: 0;
+  flex-grow: 1;
 }
 
 nav .droite {
-  display: -webkit-box; /* Ajout du préfixe pour iOS et Safari */
+  display: -webkit-box;
   display: flex;
-  -webkit-box-align: center; /* Ajout du préfixe pour iOS et Safari */
+  -webkit-box-align: center;
   align-items: center;
   margin-left: auto;
   margin-right: 20px;
-  overflow: hidden; /* Ajoute une gestion de débordement pour le contenu de droite */
+  overflow: hidden;
+  -webkit-flex-shrink: 1;
+  flex-shrink: 1;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: 20px;
+  overflow: hidden;
 }
 
 nav .onglets a,
@@ -45,10 +57,10 @@ nav .droite a.compte {
   margin: 0 10px;
   color: #fff;
   text-decoration: none;
-  -webkit-transition: color 0.3s; /* Ajout du préfixe pour iOS et Safari */
+  -webkit-transition: color 0.3s;
   transition: color 0.3s;
-  white-space: nowrap; /* Empêche le texte de se retourner à la ligne */
-  overflow: hidden; /* Ajoute une gestion de débordement pour le texte */
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 nav .onglets a:hover,
@@ -56,9 +68,6 @@ nav .droite a.compte:hover {
   color: #ff0000;
 }
 
-/* Autres styles restent inchangés */
-
-/* Les films et séries */
 .embed {
   position: relative;
   background-color: #191a1a;
@@ -122,7 +131,7 @@ footer {
   bottom: 0;
   left: 0;
   width: 100%;
-  font-size: 16px; /* Augmentation de la taille de la police */
+  font-size: 16px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -139,6 +148,12 @@ footer .colonne {
   flex-basis: 0;
   flex-grow: 1;
   margin: 0 10px;
+  -webkit-box-flex: 0;
+  -webkit-flex-grow: 1;
+  display: flex;
+  align-items: flex-start;
+  width: 70%;
+  margin: 0 auto;
 }
 
 footer .colonne:last-child {
@@ -147,23 +162,23 @@ footer .colonne:last-child {
 
 footer .colonne p {
   margin: 2px 0;
-  font-size: 1.2rem; /* Ajustement de la taille de la police */
+  font-size: 1.2rem;
   width: 100%;
 }
+
 footer .colonne a {
-  /* ... styles existants ... */
-  text-decoration: none; /* Supprimer le soulignement */
+  text-decoration: none;
 }
+
 footer .full-width {
-  flex-grow: 1; /* Utilise tout l'espace disponible */
-  text-align: justify; /* Justification du texte */
+  flex-grow: 1;
+  text-align: justify;
 }
 
 footer .clearfix {
   clear: both;
 }
 
-/* Styles pour les écrans de petite taille (téléphones) */
 @media only screen and (max-width: 600px) {
   nav .gauche,
   nav .droite {
