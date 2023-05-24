@@ -157,6 +157,39 @@ footer .clearfix {
   clear: both;
 }
 
+/* Format d'affichage pour PC (16/9) */
+@media screen and (min-aspect-ratio: 16/9) {
+  nav {
+    height: calc(1 / 9 * 100vh);
+  }
+
+  footer {
+    height: calc(1 / 9 * 100vh);
+  }
+}
+
+/* Format d'affichage pour tablette (4/3) */
+@media screen and (min-aspect-ratio: 4/3) and (max-aspect-ratio: 16/9) {
+  nav {
+    height: calc(3 / 16 * 100vh);
+  }
+
+  footer {
+    height: calc(3 / 16 * 100vh);
+  }
+}
+
+/* Format d'affichage pour iPhone (9/16) */
+@media screen and (max-aspect-ratio: 4/3) {
+  nav {
+    height: calc(9 / 16 * 100vh);
+  }
+
+  footer {
+    height: calc(9 / 16 * 100vh);
+  }
+}
+
 @media only screen and (max-width: 600px) {
   nav .gauche,
   nav .droite {
@@ -204,6 +237,7 @@ footer .clearfix {
     font-size: 14px;
   }
 }
+
 .liste a img {
   width: 100%;
   height: auto;
