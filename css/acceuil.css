@@ -28,7 +28,7 @@ nav .droite {
 nav .droite {
   display: flex;
   align-items: center;
-  justify-content: flex-end; /* Aligner les éléments à droite */
+  justify-content: flex-end;
   overflow: hidden;
   margin-left: auto;
   margin-right: 20px;
@@ -174,22 +174,20 @@ footer .clearfix {
 }
 
 .compte {
-  color: #fff; /* Couleur du texte */
-  font-size: 20px; /* Taille du texte */
-  font-weight: bold; /* Mettre le texte en gras */
-  }
-  
-  @media only screen and (max-width: 414px) {
-    footer {
-      padding: 5px 10%; /* Réduire le padding */
-      font-size: 12px; /* Réduire la taille de la police */
-    }
-  }
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+}
 
-  /* Styles pour les iPhones */
+/* Styles pour les iPhones */
 @media only screen and (max-width: 414px) {
   nav {
-    padding: 10px; /* Réduire le padding */
-    font-size: 14px; /* Réduire la taille de la police */
+    padding: 10px 5%;
+    font-size: 12px;
+  }
+
+  footer {
+    padding: 5px 4%;
+    font-size: 12px;
   }
 }
