@@ -188,10 +188,37 @@ footer .clearfix {
 }
 
 /* Ajoutez ce bloc pour ajuster la taille de la police sur les appareils iOS récents */
-@media only screen and (-webkit-min-device-pixel-ratio: 2) and (max-width: 600px), (width: 375px) and (height: 812px) {
+@media only screen and (-webkit-min-device-pixel-ratio: 2) and (max-width: 600px), (width: 375px) and (height: 812px), (width: 414px) and (height: 896px), (width: 390px) and (height: 844px), (width: 428px) and (height: 926px) {
   nav .onglets a,
   nav .droite a.compte,
   footer .colonne p {
     font-size: 14px;
+  }
+}
+
+/* Ajoutez ce bloc pour ajuster la taille de la police sur les appareils Android */
+@media only screen and (max-width: 600px) and (min-device-width: 320px) and (max-device-width: 480px) {
+  nav .onglets a,
+  nav .droite a.compte,
+  footer .colonne p {
+    font-size: 14px;
+  }
+}
+.liste a img {
+  width: 100%;
+  height: auto;
+  max-height: 350px;
+  object-fit: cover;
+}
+
+@media only screen and (max-width: 600px) {
+  .liste a {
+    flex: 0 0 50%;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .liste a {
+    flex: 0 0 100%;
   }
 }
