@@ -179,14 +179,25 @@ footer .clearfix {
   }
 }
 
-/* Format d'affichage pour iPhone (9/16) */
-@media screen and (max-aspect-ratio: 4/3) {
+/* Format d'affichage pour téléphone*/
+@media screen {
   nav {
     height: calc(9 / 16 * 100vh);
   }
 
   footer {
     height: calc(9 / 16 * 100vh);
+  }
+}
+
+/* Format d'affichage pour iPhone (9/16) */
+@media screen {
+  nav {
+    height: calc(7 / 16 * 100vh); /* Modifier la hauteur selon vos besoins */
+  }
+
+  footer {
+    height: calc(7 / 16 * 100vh); /* Modifier la hauteur selon vos besoins */
   }
 }
 
