@@ -9,7 +9,7 @@ nav {
   display: flex;
   align-items: center;
   background-color: #000;
-  color: #909191;
+  color: #fff;
   position: fixed;
   top: 0;
   left: 0;
@@ -17,7 +17,8 @@ nav {
   z-index: 2;
 }
 
-nav .gauche {
+nav .gauche,
+nav .droite {
   display: flex;
   align-items: center;
   flex-grow: 1;
@@ -27,9 +28,10 @@ nav .gauche {
 nav .droite {
   display: flex;
   align-items: center;
+  justify-content: flex-end; /* Aligner les éléments à droite */
+  overflow: hidden;
   margin-left: auto;
   margin-right: 20px;
-  overflow: hidden;
 }
 
 nav .onglets a,
@@ -112,9 +114,31 @@ footer {
   left: 0;
   width: 100%;
   font-size: 16px;
+  font-family: Arial, Helvetica, sans-serif;
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+footer .colonne p {
+  margin: 2px 0;
+  font-size: 1.2rem;
+  width: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #fff;
+  align-items: center;
+}
+
+footer .colonne p,
+footer .colonne a {
+  text-decoration: none;
+  color: #fff;
+}
+
+footer .colonne p:hover,
+footer .colonne a:hover {
+  color: #ff0000;
+  text-decoration: none;
 }
 
 footer .colonnes {
@@ -128,10 +152,6 @@ footer .colonne {
   flex-basis: 0;
   flex-grow: 1;
   margin: 0 10px;
-  display: flex;
-  align-items: flex-start;
-  width: 70%;
-  margin: 0 auto;
 }
 
 footer .colonne:last-child {
@@ -144,10 +164,6 @@ footer .colonne p {
   width: 100%;
 }
 
-footer .colonne a {
-  text-decoration: none;
-}
-
 footer .full-width {
   flex-grow: 1;
   text-align: justify;
@@ -157,113 +173,9 @@ footer .clearfix {
   clear: both;
 }
 
-/* Format d'affichage pour PC (16/9) */
-@media screen and (min-aspect-ratio: 16/9) {
-  nav {
-    height: calc(1 / 9 * 100vh);
+.compte {
+  color: #fff; /* Couleur du texte */
+  font-size: 20px; /* Taille du texte */
+  font-weight: bold; /* Mettre le texte en gras */
   }
-
-  footer {
-    height: calc(1 / 9 * 100vh);
-  }
-}
-
-/* Format d'affichage pour tablette (4/3) */
-@media screen and (min-aspect-ratio: 4/3) and (max-aspect-ratio: 16/9) {
-  nav {
-    height: calc(3 / 16 * 100vh);
-  }
-
-  footer {
-    height: calc(3 / 16 * 100vh);
-  }
-}
-
-/* Format d'affichage pour téléphone*/
-@media screen {
-  nav {
-    height: calc(9 / 16 * 100vh);
-  }
-
-  footer {
-    height: calc(9 / 16 * 100vh);
-  }
-}
-
-/* Format d'affichage pour iPhone (9/16) */
-@media screen {
-  nav {
-    height: calc(7 / 16 * 100vh); /* Modifier la hauteur selon vos besoins */
-  }
-
-  footer {
-    height: calc(7 / 16 * 100vh); /* Modifier la hauteur selon vos besoins */
-  }
-}
-
-@media only screen and (max-width: 600px) {
-  nav .gauche,
-  nav .droite {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  nav .droite {
-    margin-top: 10px;
-  }
-
-  nav .onglets a,
-  nav .droite a.compte {
-    margin: 5px 0;
-  }
-
-  .video-conteneur {
-    max-height: 30vh;
-  }
-
-  .liste a {
-    flex: 0 0 50%;
-  }
-
-  footer .colonnes {
-    flex-direction: column;
-    align-items: center;
-  }
-}
-
-/* Ajoutez ce bloc pour ajuster la taille de la police sur les appareils iOS récents */
-@media only screen and (-webkit-min-device-pixel-ratio: 2) and (max-width: 600px), (width: 375px) and (height: 812px), (width: 414px) and (height: 896px), (width: 390px) and (height: 844px), (width: 428px) and (height: 926px) {
-  nav .onglets a,
-  nav .droite a.compte,
-  footer .colonne p {
-    font-size: 14px;
-  }
-}
-
-/* Ajoutez ce bloc pour ajuster la taille de la police sur les appareils Android */
-@media only screen and (max-width: 600px) and (min-device-width: 320px) and (max-device-width: 480px) {
-  nav .onglets a,
-  nav .droite a.compte,
-  footer .colonne p {
-    font-size: 14px;
-  }
-}
-
-.liste a img {
-  width: 100%;
-  height: auto;
-  max-height: 350px;
-  object-fit: cover;
-}
-
-@media only screen and (max-width: 600px) {
-  .liste a {
-    flex: 0 0 50%;
-  }
-}
-
-@media only screen and (max-width: 375px) {
-  .liste a {
-    flex: 0 0 100%;
-  }
-}
+  
