@@ -179,3 +179,17 @@ footer .clearfix {
   font-weight: bold; /* Mettre le texte en gras */
   }
   
+  @media only screen and (max-width: 414px) {
+    footer {
+      padding: 5px 10%; /* Réduire le padding */
+      font-size: 12px; /* Réduire la taille de la police */
+    }
+  }
+
+  /* Styles pour les iPhones */
+@media only screen and (max-width: 414px) {
+  nav {
+    padding: 10px; /* Réduire le padding */
+    font-size: 14px; /* Réduire la taille de la police */
+  }
+}
