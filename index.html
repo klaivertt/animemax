@@ -93,7 +93,7 @@ body::-webkit-scrollbar-thumb:hover {
     font-weight: bold; /* Mettre le texte en gras */
   }
 
-</style>
+    </style>
 </head>
 <body>
   <nav>
@@ -115,24 +115,7 @@ body::-webkit-scrollbar-thumb:hover {
       <div id="video-container"></div>
     </div>
   </section>
-    
-  <script>
-    // Liste des vidéos
-    var videos = [
-      '<video width="100%" height="400" autoplay muted><source src="videos/jojotrailer.mp4" type="video/mp4"></video>',
-      '<video width="100%" height="400" autoplay muted><source src="videos/nagatorotrailer.mp4" type="video/mp4"></video>',
-      '<video width="100%" height="400" autoplay muted><source src="videos/KimetsunoYaibaTRAILER.mp4" type="video/mp4"></video>',
-    ];
-    
-    // Sélection aléatoire d'une vidéo
-    var randomIndex = Math.floor(Math.random() * videos.length);
-    var randomVideo = videos[randomIndex];
-    
-    // Affichage de la vidéo sélectionnée dans le conteneur
-    document.getElementById('video-container').innerHTML = randomVideo;
-  </script>
 
-  <!-- Les tendances -->
   <section class="seriefonctionne">
     <h2>Serie fonctionel</h2>
     <div class="liste">
@@ -175,5 +158,48 @@ body::-webkit-scrollbar-thumb:hover {
     </div>
     <p class="full-width">Anime Max, France</p>
   </footer>
+
+  <script>
+    // Liste des vidéos
+    var videos = [
+      '<video width="100%" height="400" autoplay muted><source src="videos/jojotrailer.mp4" type="video/mp4"></video>',
+      '<video width="100%" height="400" autoplay muted><source src="videos/nagatorotrailer.mp4" type="video/mp4"></video>',
+      '<video width="100%" height="400" autoplay muted><source src="videos/KimetsunoYaibaTRAILER.mp4" type="video/mp4"></video>',
+    ];
+  
+    // Sélection aléatoire d'une vidéo
+    var randomIndex = Math.floor(Math.random() * videos.length);
+    var randomVideo = videos[randomIndex];
+  
+    // Affichage de la vidéo sélectionnée dans le conteneur
+    document.getElementById('video-container').innerHTML = randomVideo;
+  </script>
+
+  <script>
+    // Ajouter les styles spécifiques aux iPhones
+    var isiPhone = /iPhone/i.test(navigator.userAgent);
+    if (isiPhone) {
+      var style = document.createElement('style');
+      style.innerHTML = `
+        nav .onglets a {
+          font-size: 16px;
+        }
+
+        footer {
+          padding: 5px 10%;
+          font-size: 12px;
+        }
+
+        footer .colonne p {
+          font-size: 14px;
+        }
+
+        .compte {
+          font-size: 16px;
+        }
+      `;
+      document.head.appendChild(style);
+    }
+  </script>
 </body>
 </html>
