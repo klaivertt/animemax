@@ -208,3 +208,12 @@ footer .clearfix {
     align-items: center;
   }
 }
+@media only screen and (max-width: 600px) {
+  nav {
+    width: 100vw;
+  }
+
+  footer {
+    width: 100vw;
+  }
+}
