@@ -193,3 +193,33 @@ footer .colonne p {
 .vidéo-conteneur iframe {
   border: none;
 }
+
+@media only screen and (max-width: 600px) {
+  nav .gauche,
+  nav .droite {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav .droite {
+    margin-top: 10px;
+  }
+
+  nav .onglets a,
+  nav .droite a.compte {
+    margin: 5px 0;
+  }
+
+  .video-conteneur {
+    margin-top: 80px;
+  }
+
+  footer {
+    padding: 10px 5%;
+  }
+}
+
+/* Styles pour les écrans de largeur inférieure à 480px */
+@media only screen and (max-width: 480px) {
+  /* Ajoutez ici les styles spécifiques pour cette taille d'écran */
+}
