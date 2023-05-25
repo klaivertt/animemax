@@ -5,12 +5,11 @@ body {
   background-color: #242424;
   background-size: cover;
 }
-
 nav {
   display: flex;
   align-items: center;
   background-color: #000;
-  color: #909191;
+  color: #fff;
   position: fixed;
   top: 0;
   left: 0;
@@ -18,38 +17,21 @@ nav {
   z-index: 2;
 }
 
-nav .gauche {
+nav .gauche,
+nav .droite {
   display: flex;
   align-items: center;
   flex-grow: 1;
   overflow: hidden;
 }
 
-nav .gauche img {
-  padding-top: 5px;
-  height: 80%;
-}
-
-nav .gauche .onglets {
-  margin-left: 10px;
-}
-
-nav .gauche .onglets p {
-  margin: 0 10px;
-  cursor: pointer;
-  color: #ffffff;
-}
-
-nav .gauche .onglets p:hover {
-  color: #ff0000;
-}
-
 nav .droite {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
+  overflow: hidden;
   margin-left: auto;
   margin-right: 20px;
-  overflow: hidden;
 }
 
 nav .onglets a,
@@ -62,7 +44,19 @@ nav .droite a.compte {
   white-space: nowrap;
   overflow: hidden;
 }
+nav .onglets a {
+  display: block;
+  margin: 0 10px;
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s;
+  font-size: 20px; /* Augmenter la taille du texte */
+  font-weight: bold; /* Mettre le texte en gras */
+}
 
+nav .onglets a:hover {
+color: #ff0000;
+}
 nav .onglets a:hover,
 nav .droite a.compte:hover {
   color: #ff0000;
@@ -139,9 +133,10 @@ nav .droite a.compte:hover {
   background-image: linear-gradient(to top left, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.));
 }
 
+
 footer {
   background-color: #000;
-  padding: 10px;
+  padding: 10px 10%;
   color: #909191;
   position: fixed;
   bottom: 0;
@@ -154,10 +149,20 @@ footer {
   justify-content: space-between;
 }
 
+footer .colonne p {
+  margin: 2px 0;
+  font-size: 1.2rem;
+  width: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #fff;
+  align-items: center;
+}
+
 footer .colonne p,
 footer .colonne a {
   text-decoration: none;
   color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 footer .colonne p:hover,
@@ -187,6 +192,15 @@ footer .colonne p {
   margin: 2px 0;
   font-size: 1.2rem;
   width: 100%;
+}
+
+footer .full-width {
+  flex-grow: 1;
+  text-align: justify;
+}
+
+footer .clearfix {
+  clear: both;
 }
 
 .compte {
