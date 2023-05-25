@@ -124,7 +124,7 @@ nav .droite a.compte:hover {
 
 .liste a img {
   width: 100%;
-  height: 350px;
+  height: 80%;
   object-fit: cover;
 }
 
