@@ -4,6 +4,7 @@ body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
   overflow-x: hidden;
+  background-color: #242424;
 }
 
 nav {
@@ -66,11 +67,11 @@ nav .droite a.compte:hover {
 }
 
 .conditions-utilisation {
-  margin-top: 30px; 
+  margin-top: 50px; 
   padding: 50px 10%;
   color: #fff;
   background-color: #242424;
-  margin-bottom: 50px;
+  margin-bottom: 70px;
 }
 
 .conditions-utilisation h2 {
