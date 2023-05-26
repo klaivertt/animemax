@@ -141,6 +141,7 @@ footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  z-index: 3;
 }
 
 footer .colonne p {
@@ -193,10 +194,6 @@ footer .full-width {
   text-align: justify;
 }
 
-footer .clearfix {
-  clear: both;
-}
-
 .compte {
   color: #fff;
   font-size: 20px;
@@ -219,14 +216,42 @@ body::-webkit-scrollbar-thumb:hover {
   background-color: #555;
 }
 
-@media only screen and (max-width: 414px) {
+@media only screen and (max-width: 720px) {
+  body {
+    font-size: 14px;
+  }
+
   nav {
     padding: 10px 5%;
     font-size: 12px;
   }
 
+  nav .onglets a {
+    font-size: 14px;
+  }
+
+  nav .droite a.compte {
+    font-size: 14px;
+  }
+
+  .conditions-utilisation {
+    padding: 30px 5%;
+  }
+
+  .conditions-utilisation h2 {
+    font-size: 22px;
+  }
+
+  .conditions-utilisation h3 {
+    font-size: 16px;
+  }
+
   footer {
     padding: 5px 4%;
     font-size: 12px;
+  }
+
+  footer .colonne p {
+    font-size: 14px;
   }
 }
