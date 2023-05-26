@@ -1,0 +1,50 @@
+name: Compile and Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y zip
+
+      - name: Compile code
+        run: |
+          # Ajoutez ici les commandes de compilation de votre code
+          # Par exemple : 
+          # - npm install (pour les dépendances JS)
+          # - npx webpack (pour la compilation JS)
+          # - npx sass input.scss output.css (pour la compilation CSS)
+          # - php -l file.php (pour la validation PHP)
+
+      - name: Zip compiled code
+        run: |
+          zip -r compiled_code.zip <dossier_compilé>
+
+      - name: Upload to FTP server
+        uses: SamKirkland/FTP-Deploy-Action@4.1.1
+        with:
+          ftp-server: ${{ secrets.FTP_SERVER }}
+          ftp-username: ${{ secrets.FTP_USERNAME }}
+          ftp-password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./compiled_code.zip
+          server-dir: /dashboard/annimemaxfr/
+
+      - name: Cleanup
+        run: |
+          rm compiled_code.zip
