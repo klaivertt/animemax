@@ -66,6 +66,7 @@ nav .droite a.compte:hover {
 }
 
 .conditions-utilisation {
+  margin-top: 60px; 
   padding: 50px 10%;
   color: #fff;
   background-color: #242424;
