@@ -28,6 +28,23 @@
         body {
             background-color: #242424;
         }
+        .btn-custom {
+        background-color: red;
+        color: white;
+        }
+    
+        .btn-custom:hover,
+        .btn-custom:focus {
+        background-color: darkred;
+        color: white;
+        }
+        .custom-modal-content {
+        background-color: #242424;
+        }
+        .custom-modal-content h5.modal-title,
+        .custom-modal-content label {
+        color: white;
+        }
     </style>
 
 </head>
@@ -51,12 +68,13 @@
 
 
                 <div class="text-center">
-                        <h1 class="p-5">Bonjour <?php echo $data['pseudo']; ?> !</h1>
+                        <h1 class="p-5" style="color: white; font-weight: bold;">Bonjour <?php echo $data['pseudo']; ?> !</h1>
                         <hr />
                         <a href="deconnexion.php" class="btn btn-danger btn-lg">Déconnexion</a>
+
                         <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#change_password">
-                          Changer mon mot de passe
+                        <button type="button" class="btn btn-custom btn-lg custom-btn" data-toggle="modal" data-target="#change_password">
+                             Changer mon mot de passe
                         </button>
                         <button onclick="history.back()" class="btn btn-secondary btn-lg">Retour</button> <!-- Bouton Retour -->
                 </div>
@@ -71,7 +89,7 @@
         <!-- Modal -->
         <div class="modal fade" id="change_password" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
             <div class="modal-dialog" role="document">
-                <div class="modal-content">
+                <div class="modal-content custom-modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Changer mon mot de passe</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -101,7 +119,7 @@
 
             <div class="modal fade" id="avatar" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
                 <div class="modal-dialog" role="document">
-                    <div class="modal-content">
+                    <div class="modal-content custom-modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title">Changer mon avatar</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
