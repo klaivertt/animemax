@@ -45,6 +45,9 @@
         .custom-modal-content label {
         color: white;
         }
+        hr {
+        border-color: white;
+        }
     </style>
 
 </head>
