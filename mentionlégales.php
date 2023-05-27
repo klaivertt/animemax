@@ -1,6 +1,34 @@
+<?php
+session_start();
+require_once 'config.php';
+
+// Vérifier si l'utilisateur est connecté
+if (!isset($_SESSION['user'])) {
+    header('Location: index.php');
+    die();
+}
+
+// Récupérer les données de l'utilisateur
+$req = $bdd->prepare('SELECT * FROM utilisateurs WHERE token = ?');
+$req->execute(array($_SESSION['user']));
+$data = $req->fetch();
+
+if (isset($_POST['avatar'])) {
+    $selectedAvatar = $_POST['avatar'];
+
+    // Mettre à jour l'avatar dans la base de données
+    $updateAvatar = $bdd->prepare('UPDATE utilisateurs SET profile_image = ? WHERE token = ?');
+    $updateAvatar->execute(array($selectedAvatar, $_SESSION['user']));
+
+    // Rediriger vers la page de profil avec un message de succès
+    header('Location: profil.php?success=avatar');
+    die();
+}
+?>
+
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <title>Mentions légales - Anime Max</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,26 +36,31 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
     <link rel="icon" href="https://i.ibb.co/pzb7pxM/animemaxred.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  </head>
-  <body>
-    <nav>
-      <div class="gauche">
-        <a href="acceuil.html"><img src="https://i.ibb.co/x5VrKjd/animemaxred1.png" alt="logo" height="80%"></a>
+</head>
+<body>
+<nav>
+    <div class="gauche">
+        <a href="acceuil.php"><img src="https://i.ibb.co/x5VrKjd/animemaxred1.png" alt="logo" height="80%"></a>
         <div class="onglets">
-          <a href="acceuil.html"><p>Accueil</p></a>
+            <a href="acceuil.php"><p>Accueil</p></a>
         </div>
-      </div>
-      <div class="droite">
+    </div>
+    <div class="droite">
         <p><i class="fas fa-search"></i></p>
         <p><i class="fas fa-bell"></i></p>
-        <p><a href="profil.php" class="compte">Mon compte</a></p>
-      </div>
-    </nav>
-  
+        <p>
+            <a href="profil.php" class="compte" style="display: flex; align-items: center;">
+                <img src="img/avatars/<?php echo $data['profile_image']; ?>" alt="Image de profil" class="round-image" height="50" width="50">
+                <span style="margin-left: 5px;"><?php echo $data['pseudo']; ?></span>
+            </a>
+        </p>
+    </div>
+</nav>
 
-    <section class="conditions-utilisation">
-      <h2>Mentions légales d'Anime Max</h2>
-      <div class="texte">
+
+<section class="conditions-utilisation">
+    <h2>Mentions légales d'Anime Max</h2>
+    <div class="texte">
         <p>Ce site de streaming est exploité par Anime Max, une entité d'Anteion Studio.</p>
         <p>Raison sociale : Anime Max</p>
         <p>Adresse e-mail : anteionstudio@gmail.com</p>
@@ -48,32 +81,32 @@
         <p>Pour toute question ou demande concernant les mentions légales d'Anime Max, veuillez nous contacter à l'adresse e-mail suivante : anteionstudio@gmail.com.</p>
 
         <p>Dernière mise à jour : 26/05/2023</p>
-      </div>
-    </section>
+    </div>
+</section>
 
-    <footer>
-      <div class="colonnes">
+<footer>
+    <div class="colonnes">
         <div class="colonne">
-          <p><a href="Nouscontacter.html">Nous contacter</a></p>
+            <p><a href="Nouscontacter.php">Nous contacter</a></p>
         </div>
         <div class="colonne">
-          <p><a href="CGU.html">Conditions d'utilisation</a></p>
+            <p><a href="CGU.php">Conditions d'utilisation</a></p>
         </div>
         <div class="colonne">
-          <p><a href="mentionlégales.html">Mentions légales</a></p>
-          <p><a href="Confidentialite.html">Confidentialité</a></p>
+            <p><a href="mentionlégales.php">Mentions légales</a></p>
+            <p><a href="Confidentialite.php">Confidentialité</a></p>
         </div>
         <div class="colonne">
-          <p><a href="https://www.speedtest.net/">Test de vitesse</a></p>
+            <p><a href="https://www.speedtest.net/">Test de vitesse</a></p>
         </div>
-      </div>
-      <div class="clearfix"></div> <!-- Ajout d'un élément de clearing -->
-      <p class="full-width">Anime Max, France</p> <!-- Ajout d'une classe "full-width" -->
-    </footer>
-    <script>
-      // Ajouter les styles spécifiques aux iPhones
-      var isiPhone = /iPhone/i.test(navigator.userAgent);
-      if (isiPhone) {
+    </div>
+    <div class="clearfix"></div> <!-- Ajout d'un élément de clearing -->
+    <p class="full-width">Anime Max, France</p> <!-- Ajout d'une classe "full-width" -->
+</footer>
+<script>
+    // Ajouter les styles spécifiques aux iPhones
+    var isiPhone = /iPhone/i.test(navigator.userAgent);
+    if (isiPhone) {
         var style = document.createElement('style');
         style.innerHTML = `
           nav .onglets a {
@@ -95,7 +128,7 @@
           }
         `;
         document.head.appendChild(style);
-      }
-    </script>
-  </body>
+    }
+</script>
+</body>
 </html>

@@ -19,6 +19,7 @@ CREATE TABLE IF NOT EXISTS `utilisateurs` (
   `pseudo` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `password` text NOT NULL,
+  `profile_image` VARCHAR(255) NOT NULL,
   `ip` varchar(20) NOT NULL,
   `token` text NOT NULL,
   `date_inscription` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,

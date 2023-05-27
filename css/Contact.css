@@ -65,7 +65,12 @@ body {
   nav .droite a.compte:hover {
     color: #ff0000;
   }
-
+  .round-image {
+    border-radius: 50%;
+    height: 50px; /* Définissez la hauteur souhaitée */
+    width: 50px; /* Définissez la largeur souhaitée */
+    margin-right: 5px;
+  }
   
   .contact {
     max-width: 800px;
