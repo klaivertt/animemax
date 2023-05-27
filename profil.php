@@ -23,7 +23,14 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  </head>
+    <link rel="icon" href="https://i.ibb.co/pzb7pxM/animemaxred.png">
+    <style>
+        body {
+            background-color: #242424;
+        }
+    </style>
+
+</head>
   <body>
         <div class="container">
             <div class="col-md-12">
@@ -51,6 +58,7 @@
                         <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#change_password">
                           Changer mon mot de passe
                         </button>
+                        <button onclick="history.back()" class="btn btn-secondary btn-lg">Retour</button> <!-- Bouton Retour -->
                 </div>
             </div>
         </div>    
