@@ -26,13 +26,6 @@ if (isset($_GET['success']) && $_GET['success'] === 'avatar') {
 <head>
     <title>Espace membre</title>
     <!-- Required meta tags -->
-    <!-- Meta tags obligatoires -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -70,8 +63,8 @@ if (isset($_GET['success']) && $_GET['success'] === 'avatar') {
 
         .profile-image-container {
             position: relative;
-            width: 150px;
-            height: 150px;
+            width: 200px;
+            height: 200px;
             overflow: hidden;
             border-radius: 50%;
         }
@@ -106,14 +99,18 @@ if (isset($_GET['success']) && $_GET['success'] === 'avatar') {
             font-size: 18px;
         }
 
-        .avatar-list {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
         .avatar-item {
             margin: 10px;
+        }
+
+        .avatar-input {
+            display: none;
+        }
+
+        .avatar-label {
+            display: block;
+            position: relative;
+            cursor: pointer;
         }
 
         .avatar-image {
@@ -121,11 +118,55 @@ if (isset($_GET['success']) && $_GET['success'] === 'avatar') {
             height: 100px;
             border-radius: 50%;
             cursor: pointer;
+            border: 2px solid transparent;
+            transition: border-color 0.3s;
         }
 
         .avatar-image:hover {
-            border: 2px solid red;
+            border-color: red;
         }
+
+        .avatar-input:checked+.avatar-label .avatar-image {
+            border-color: red;
+        }
+        
+        .container {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            height: 100vh;
+            padding-left: 50px;
+        }
+
+        .welcome-message-container {
+            margin-left: 50px;
+            text-align: center;
+        }
+
+        @media (max-width: 576px) {
+            .container {
+                flex-direction: column;
+                padding-left: 0;
+                padding-bottom: 20px;
+            }
+            
+            .welcome-message-container {
+                margin-left: 0;
+                margin-bottom: 20px;
+            }
+            
+            .profile-image-container {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .profile-image-overlay .btn {
+                font-size: 16px;
+            }
+        }
+        .d-flex.justify-content-start > *:not(:last-child) {
+       margin-right: 5px;
+   }
     </style>
 </head>
 
@@ -146,90 +187,96 @@ if (isset($_GET['success']) && $_GET['success'] === 'avatar') {
                 }
             }
             ?>
-
-<div class="text-center">
-    <div class="d-flex justify-content-center align-items-center">
-        <div class="profile-image-container">
-            <img src="img/avatars/<?php echo $data['profile_image']; ?>" alt="Image de profil" class="profile-image">
-        </div>
-        <div class="ml-3">
-            <h1 class="p-5 welcome-message" style="color: white; font-weight: bold;">Bonjour <?php echo $data['pseudo']; ?> !</h1>
-
-            <hr />
-            <a href="deconnexion.php" class="btn btn-danger btn-lg">Déconnexion</a>
-
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-custom btn-lg custom-btn" data-toggle="modal" data-target="#change_password">
-                Changer mon mot de passe
-            </button>
-
-            <!-- Bouton Retour -->
-            <button onclick="history.back()" class="btn btn-secondary btn-lg">Retour</button>
-        </div>
-    </div>
-</div>
-
-
-            <!-- Modal -->
-            <div class="modal fade" id="change_password" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content custom-modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Changer mon mot de passe</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
+                    
+            <div class="text-center">
+                <div class="d-flex justify-content-center align-items-center flex-wrap-reverse">
+                    <div class="profile-image-container">
+                        <img src="img/avatars/<?php echo $data['profile_image']; ?>" alt="Image de profil" class="profile-image">
+                        <div class="profile-image-overlay">
+                            <button type="button" class="btn btn-custom btn-lg custom-btn" data-toggle="modal" data-target="#change_avatar">
+                                Changer mon avatar
                             </button>
                         </div>
-                        <div class="modal-body">
-                            <form action="layouts/change_password.php" method="POST">
-                                <label for='current_password'>Mot de passe actuel</label>
-                                <input type="password" id="current_password" name="current_password" class="form-control" required/>
-                                <br />
-                                <label for='new_password'>Nouveau mot de passe</label>
-                                <input type="password" id="new_password" name="new_password" class="form-control" required/>
-                                <br />
-                                <label for='new_password_retype'>Re tapez le nouveau mot de passe</label>
-                                <input type="password" id="new_password_retype" name="new_password_retype" class="form-control" required/>
-                                <br />
-                                <button type="submit" class="btn btn-success">Sauvegarder</button>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>
-                        </div>
+                    </div>
+                    <div class="welcome-message-container">
+                        <h1 class="p-5 welcome-message" style="color: white; font-weight: bold;">Bonjour <?php echo $data['pseudo']; ?> !</h1>
+                        <hr />
+                        <div class="d-flex flex-wrap justify-content-start">
+   <a href="deconnexion.php" class="btn btn-danger btn-lg mb-3">Déconnexion</a>
+
+   <!-- Button trigger modal -->
+   <button type="button" class="btn btn-custom btn-lg custom-btn mb-3" data-toggle="modal" data-target="#change_password">
+       Changer mon mot de passe
+   </button>
+
+   <!-- Bouton Retour -->
+   <button onclick="history.back()" class="btn btn-secondary btn-lg mb-3">Retour</button>
+</div>
                     </div>
                 </div>
             </div>
 
-           <form action="enregistrer_avatar.php" method="POST">
-    <div class="modal-body">
-        <h5>Sélectionnez votre nouvel avatar :</h5>
-        <div class="avatar-list">
-            <?php
-            $avatars = array(
-                'avatar-1.png',
-                'avatar-2.png',
-                'avatar-3.png',
-                'avatar-4.png',
-                'avatar-5.jpeg',
-                'avatar-6.jpg'
-            );
+            <!-- Modal -->
+            <div class="modal fade" id="change_password" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                <!-- Modal content... -->
+            </div>
 
-            foreach ($avatars as $avatar) {
-                $avatarChecked = ($data['profile_image'] === $avatar) ? 'checked' : '';
-                echo '<div class="avatar-item">
-                        <label>
-                            <input type="radio" name="avatar" value="' . $avatar . '" class="avatar-input" required ' . $avatarChecked . '>
-                            <img src="img/avatars/' . $avatar . '" alt="' . $avatar . '" class="avatar-image">
-                        </label>
-                    </div>';
-            }
-            ?>
-        </div>
-        <br />
-        <button type="submit" class="btn btn-success">Modifier</button>
-    </div>
-</form>
+            <form action="enregistrer_avatar.php" method="POST">
+                <div class="modal fade" id="change_avatar" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content custom-modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Sélectionner un nouvel avatar</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <h5>Sélectionnez votre nouvel avatar :</h5>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="d-flex flex-wrap justify-content-start">
+                                            <?php
+                                            $avatars = array(
+                                                'avatar-1.png',
+                                                'avatar-2.png',
+                                                'avatar-3.png',
+                                                'avatar-4.png',
+                                                'avatar-5.png',
+                                                'avatar-6.png',
+                                                'avatar-7.png',
+                                                'avatar-8.png',
+                                                'avatar-9.png',
+                                                'avatar-10.png',
+                                                'avatar-11.png',
+                                                'avatar-12.png'
+                                            );
+
+                                            foreach ($avatars as $avatar) {
+                                                $avatarChecked = ($data['profile_image'] === $avatar) ? 'checked' : '';
+                                                $avatarNumber = substr($avatar, -5, 1);
+                                                $avatarSelectedClass = ($avatarChecked !== '') ? 'avatar-selected' : '';
+
+                                                echo '<div class="avatar-item">
+                                                    <input type="radio" name="avatar" id="avatar-' . $avatarNumber . '" value="' . $avatar . '" class="avatar-input visually-hidden" ' . $avatarChecked . ' required>
+                                                    <label for="avatar-' . $avatarNumber . '" class="avatar-label">
+                                                        <img src="img/avatars/' . $avatar . '" alt="' . $avatar . '" class="avatar-image ' . $avatarSelectedClass . '">
+                                                    </label>
+                                                </div>';
+                                            }
+                                            ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>
+                                <button type="submit" class="btn btn-success">Modifier</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
 
         </div>
     </div>
@@ -249,10 +296,8 @@ if (isset($_GET['success']) && $_GET['success'] === 'avatar') {
             $('.avatar-input').on('change', function () {
                 var selectedAvatar = $(this).val();
                 var avatarNumber = selectedAvatar.split('-')[1].split('.')[0];
-                var welcomeMessage = $('.welcome-message');
-                var avatarImage = welcomeMessage.siblings('.profile-image-container').find('.profile-image');
-
-                avatarImage.attr('src', 'img/avatars/' + selectedAvatar);
+                var avatarImage = '<img src="img/avatars/avatar-' + avatarNumber + '.png" alt="' + selectedAvatar + '" class="profile-image">';
+                $('.profile-image').replaceWith(avatarImage);
             });
         });
     </script>

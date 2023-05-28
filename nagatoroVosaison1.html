@@ -1,31 +1,4 @@
-﻿<?php
-session_start();
-require_once 'config.php';
-
-// Vérifier si l'utilisateur est connecté
-if (!isset($_SESSION['user'])) {
-    header('Location: index.php');
-    die();
-}
-
-// Récupérer les données de l'utilisateur
-$req = $bdd->prepare('SELECT * FROM utilisateurs WHERE token = ?');
-$req->execute(array($_SESSION['user']));
-$data = $req->fetch();
-
-if (isset($_POST['avatar'])) {
-    $selectedAvatar = $_POST['avatar'];
-
-    // Mettre à jour l'avatar dans la base de données
-    $updateAvatar = $bdd->prepare('UPDATE utilisateurs SET profile_image = ? WHERE token = ?');
-    $updateAvatar->execute(array($selectedAvatar, $_SESSION['user']));
-
-    // Rediriger vers la page de profil avec un message de succès
-    header('Location: profil.php?success=avatar');
-    die();
-}
-?>
-
+﻿
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -69,8 +42,7 @@ if (isset($_POST['avatar'])) {
             <p><i class="fas fa-bell"></i></p>
             <p>
                 <a href="profil.php" class="compte" style="display: flex; align-items: center;">
-                    <img src="img/avatars/<?php echo $data['profile_image']; ?>" alt="Image de profil" class="round-image" height="50" width="50">
-                    <span style="margin-left: 5px;"><?php echo $data['pseudo']; ?></span>
+                    <span style="margin-left: 5px;">mon compte</span>
                 </a>
             </p>
         </div>

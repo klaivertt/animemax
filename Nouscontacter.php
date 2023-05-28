@@ -13,16 +13,32 @@ $req = $bdd->prepare('SELECT * FROM utilisateurs WHERE token = ?');
 $req->execute(array($_SESSION['user']));
 $data = $req->fetch();
 
-if (isset($_POST['avatar'])) {
-    $selectedAvatar = $_POST['avatar'];
+if (isset($_POST['submit'])) {
+    // Récupérer les valeurs du formulaire
+    $email = $_POST['email'];
+    $subject = $_POST['subject'];
+    $message = $_POST['message'];
 
-    // Mettre à jour l'avatar dans la base de données
-    $updateAvatar = $bdd->prepare('UPDATE utilisateurs SET profile_image = ? WHERE token = ?');
-    $updateAvatar->execute(array($selectedAvatar, $_SESSION['user']));
+    // Construction du corps de l'e-mail
+    $body = "Pseudo: " . $data['pseudo'] . "\n";
+    $body .= "Adresse e-mail: " . $email . "\n";
+    $body .= "Sujet: " . $subject . "\n";
+    $body .= "Message:\n" . $message;
 
-    // Rediriger vers la page de profil avec un message de succès
-    header('Location: profil.php?success=avatar');
-    die();
+    // En-têtes de l'e-mail
+    $headers = "From: " . $email . "\r\n";
+    $headers .= "Reply-To: " . $email . "\r\n";
+
+    // Envoyer l'e-mail
+    $success = mail("anteionstudio@gmail.com", $subject, $body, $headers);
+
+    // Vérifier si l'e-mail a été envoyé avec succès
+    if ($success) {
+        header('Location: confirmation.php');
+        exit();
+    } else {
+        echo "Une erreur s'est produite lors de l'envoi du message.";
+    }
 }
 ?>
 
@@ -36,28 +52,6 @@ if (isset($_POST['avatar'])) {
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
     <link rel="icon" href="https://i.ibb.co/pzb7pxM/animemaxred.png">
 
-    <style>
-        nav .onglets a {
-            font-size: 12px;
-            padding: 12px 14%;
-        }
-        nav .gauche img {
-            height: 50px; /* Réduire la taille du logo */
-        }
-        footer {
-            padding: 12px 14%;
-            font-size: 10px;
-        }
-        footer .colonne p {
-            font-size: 10px;
-        }
-        .compte {
-            font-size: 12px;
-        }
-        .full-width {
-            /* Ajout d'une classe "full-width" */
-        }
-    </style>
 </head>
 <body>
 <nav>
@@ -91,11 +85,8 @@ if (isset($_POST['avatar'])) {
     <div class="contact-form">
         <h3>Formulaire de contact</h3>
         <form action="send_email.php" method="POST">
-            <label for="name">Nom :</label>
-            <input type="text" id="name" name="name" required>
-
-            <label for="email">Adresse e-mail :</label>
-            <input type="email" id="email" name="email" required>
+            <label for="email">Votre adresse e-mail :</label>
+            <input type="email" id="email" name="email" value="<?php echo $data['email']; ?>" required>
 
             <label for="subject">Sujet :</label>
             <input type="text" id="subject" name="subject" required>
@@ -103,14 +94,9 @@ if (isset($_POST['avatar'])) {
             <label for="message">Message :</label>
             <textarea id="message" name="message" required></textarea>
 
-            <button type="submit">Envoyer</button>
+            <button type="submit" name="submit">Envoyer</button>
         </form>
     </div>
-</section>
-
-<section class="confirmation">
-    <h3>Message envoyé</h3>
-    <p>Merci pour votre message ! Nous vous répondrons dans les plus brefs délais.</p>
 </section>
 
 <footer>
