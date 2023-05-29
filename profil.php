@@ -14,10 +14,10 @@ $req->execute(array($_SESSION['user']));
 $data = $req->fetch();
 
 // Vérifier si le paramètre de succès est présent
+$successMessage = "";
 if (isset($_GET['success']) && $_GET['success'] === 'avatar') {
     $successMessage = "L'avatar a bien été modifié !";
 }
-
 ?>
 
 <!doctype html>
@@ -63,8 +63,8 @@ if (isset($_GET['success']) && $_GET['success'] === 'avatar') {
 
         .profile-image-container {
             position: relative;
-            width: 200px;
-            height: 200px;
+            width: 300px;
+            height: 300px;
             overflow: hidden;
             border-radius: 50%;
         }
@@ -114,8 +114,8 @@ if (isset($_GET['success']) && $_GET['success'] === 'avatar') {
         }
 
         .avatar-image {
-            width: 100px;
-            height: 100px;
+            width: 125px;
+            height: 125px;
             border-radius: 50%;
             cursor: pointer;
             border: 2px solid transparent;
@@ -126,10 +126,22 @@ if (isset($_GET['success']) && $_GET['success'] === 'avatar') {
             border-color: red;
         }
 
-        .avatar-input:checked+.avatar-label .avatar-image {
+        .avatar-input:checked + .avatar-label .avatar-image {
             border-color: red;
         }
-        
+
+        .avatar-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .avatar-item {
+            margin: 10px 5px;
+        }
+
         .container {
             display: flex;
             justify-content: flex-start;
@@ -149,24 +161,25 @@ if (isset($_GET['success']) && $_GET['success'] === 'avatar') {
                 padding-left: 0;
                 padding-bottom: 20px;
             }
-            
+
             .welcome-message-container {
                 margin-left: 0;
                 margin-bottom: 20px;
             }
-            
+
             .profile-image-container {
                 width: 150px;
                 height: 150px;
             }
-            
+
             .profile-image-overlay .btn {
                 font-size: 16px;
             }
         }
+
         .d-flex.justify-content-start > *:not(:last-child) {
-       margin-right: 5px;
-   }
+            margin-right: 5px;
+        }
     </style>
 </head>
 
@@ -187,7 +200,7 @@ if (isset($_GET['success']) && $_GET['success'] === 'avatar') {
                 }
             }
             ?>
-                    
+
             <div class="text-center">
                 <div class="d-flex justify-content-center align-items-center flex-wrap-reverse">
                     <div class="profile-image-container">
@@ -202,16 +215,16 @@ if (isset($_GET['success']) && $_GET['success'] === 'avatar') {
                         <h1 class="p-5 welcome-message" style="color: white; font-weight: bold;">Bonjour <?php echo $data['pseudo']; ?> !</h1>
                         <hr />
                         <div class="d-flex flex-wrap justify-content-start">
-   <a href="deconnexion.php" class="btn btn-danger btn-lg mb-3">Déconnexion</a>
+                            <a href="deconnexion.php" class="btn btn-custom btn-lg custom-btn mb-3">Déconnexion</a>
 
-   <!-- Button trigger modal -->
-   <button type="button" class="btn btn-custom btn-lg custom-btn mb-3" data-toggle="modal" data-target="#change_password">
-       Changer mon mot de passe
-   </button>
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-custom btn-lg custom-btn mb-3" data-toggle="modal" data-target="#change_password">
+                                Changer mon mot de passe
+                            </button>
 
-   <!-- Bouton Retour -->
-   <button onclick="history.back()" class="btn btn-secondary btn-lg mb-3">Retour</button>
-</div>
+                            <!-- Bouton Retour -->
+                            <button onclick="history.back()" class="btn btn-secondary btn-lg mb-3">Retour</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -233,40 +246,37 @@ if (isset($_GET['success']) && $_GET['success'] === 'avatar') {
                             </div>
                             <div class="modal-body">
                                 <h5>Sélectionnez votre nouvel avatar :</h5>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="d-flex flex-wrap justify-content-start">
-                                            <?php
-                                            $avatars = array(
-                                                'avatar-1.png',
-                                                'avatar-2.png',
-                                                'avatar-3.png',
-                                                'avatar-4.png',
-                                                'avatar-5.png',
-                                                'avatar-6.png',
-                                                'avatar-7.png',
-                                                'avatar-8.png',
-                                                'avatar-9.png',
-                                                'avatar-10.png',
-                                                'avatar-11.png',
-                                                'avatar-12.png'
-                                            );
+                                <div class="avatar-list">
+                                    <?php
+                                    $avatars = array(
+                                        'avatar1.png',
+                                        'avatar2.png',
+                                        'avatar3.png',
+                                        'avatar4.png',
+                                        'avatar5.png',
+                                        'avatar6.png',
+                                        'avatar7.png',
+                                        'avatar8.png',
+                                        'avatar9.png',
+                                        'avatar10.png',
+                                        'avatar11.png',
+                                        'avatar12.png'
+                                    );
+                                    foreach ($avatars as $avatar) {
+                                        $avatarChecked = ($data['profile_image'] === $avatar) ? 'checked' : '';
+                                        $avatarNumber = str_replace(array('avatar', '.png'), '', $avatar);
+                                        $avatarSelectedClass = ($avatarChecked !== '') ? 'avatar-selected' : '';
 
-                                            foreach ($avatars as $avatar) {
-                                                $avatarChecked = ($data['profile_image'] === $avatar) ? 'checked' : '';
-                                                $avatarNumber = substr($avatar, -5, 1);
-                                                $avatarSelectedClass = ($avatarChecked !== '') ? 'avatar-selected' : '';
-
-                                                echo '<div class="avatar-item">
-                                                    <input type="radio" name="avatar" id="avatar-' . $avatarNumber . '" value="' . $avatar . '" class="avatar-input visually-hidden" ' . $avatarChecked . ' required>
-                                                    <label for="avatar-' . $avatarNumber . '" class="avatar-label">
-                                                        <img src="img/avatars/' . $avatar . '" alt="' . $avatar . '" class="avatar-image ' . $avatarSelectedClass . '">
-                                                    </label>
-                                                </div>';
-                                            }
-                                            ?>
-                                        </div>
-                                    </div>
+                                        echo '<div class="avatar-item d-flex flex-wrap">
+                                            <div class="mr-3 mb-3">
+                                                <input type="radio" name="avatar" id="avatar-' . $avatarNumber . '" value="' . $avatar . '" class="avatar-input visually-hidden" ' . $avatarChecked . ' required>
+                                                <label for="avatar-' . $avatarNumber . '" class="avatar-label">
+                                                    <img src="img/avatars/' . $avatar . '" alt="' . $avatar . '" class="avatar-image ' . $avatarSelectedClass . '">
+                                                </label>
+                                            </div>
+                                        </div>';
+                                    }
+                                    ?>
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -290,17 +300,6 @@ if (isset($_GET['success']) && $_GET['success'] === 'avatar') {
     <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-    <script>
-        $(document).ready(function () {
-            // Lorsque l'utilisateur sélectionne une image d'avatar, mettre à jour l'avatar à côté de "Bonjour"
-            $('.avatar-input').on('change', function () {
-                var selectedAvatar = $(this).val();
-                var avatarNumber = selectedAvatar.split('-')[1].split('.')[0];
-                var avatarImage = '<img src="img/avatars/avatar-' + avatarNumber + '.png" alt="' + selectedAvatar + '" class="profile-image">';
-                $('.profile-image').replaceWith(avatarImage);
-            });
-        });
-    </script>
 </body>
 
 </html>
