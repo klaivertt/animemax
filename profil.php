@@ -253,23 +253,35 @@ if (isset($_GET['success']) && $_GET['success'] === 'avatar') {
                                         'avatar2.png',
                                         'avatar3.png',
                                         'avatar4.png',
+                                        // kimetsu//
                                         'avatar5.png',
-                                        'avatar6.png',
-                                        'avatar7.png',
-                                        'avatar8.png',
                                         'avatar9.gif',
+                                        'avatar12.png',
+                                        "avatar22.gif",
+                                        "avatar23.gif",
+                                        //endKimetsu//
+                                        'avatar6.png',
+                                        //TokyoGhoul//
+                                        'avatar7.png',
+                                        "avatar18.gif",
+                                        //endTokyoGhoul//
+                                        //onepiece//
+                                        'avatar8.png',
+                                        "avatar17.gif",
+                                        //onepiece//
                                         'avatar10.png',
                                         'avatar11.png',
-                                        'avatar12.png',
                                         "avatar13.png",
+                                        //MHA//
                                         "avatar14.png",
-                                        "avatar15.png",
-                                        "avatar16.gif",
-                                        "avatar17.gif",
-                                        "avatar18.gif",
+                                        //mha//
+                                        "avatar15.png",                                        
                                         "avatar19.gif",
                                         "avatar20.gif",
-                                        "avatar21.gif"
+                                        //pokémon//
+                                        "avatar16.gif",
+                                        //pokémon//
+                                        "avatar21.gif",
 
                                     );
                                     foreach ($avatars as $avatar) {
