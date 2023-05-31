@@ -257,10 +257,20 @@ if (isset($_GET['success']) && $_GET['success'] === 'avatar') {
                                         'avatar6.png',
                                         'avatar7.png',
                                         'avatar8.png',
-                                        'avatar9.png',
+                                        'avatar9.gif',
                                         'avatar10.png',
                                         'avatar11.png',
-                                        'avatar12.png'
+                                        'avatar12.png',
+                                        "avatar13.png",
+                                        "avatar14.png",
+                                        "avatar15.png",
+                                        "avatar16.gif",
+                                        "avatar17.gif",
+                                        "avatar18.gif",
+                                        "avatar19.gif",
+                                        "avatar20.gif",
+                                        "avatar21.gif"
+
                                     );
                                     foreach ($avatars as $avatar) {
                                         $avatarChecked = ($data['profile_image'] === $avatar) ? 'checked' : '';

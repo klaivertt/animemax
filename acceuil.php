@@ -13,17 +13,18 @@ $req = $bdd->prepare('SELECT * FROM utilisateurs WHERE token = ?');
 $req->execute(array($_SESSION['user']));
 $data = $req->fetch();
 
-if (isset($_POST['avatar'])) {
-    $selectedAvatar = $_POST['avatar'];
+// Récupérer les fichiers HTML dans le répertoire
+$files = glob('*.html');
+$series = array();
 
-    // Mettre à jour l'avatar dans la base de données
-    $updateAvatar = $bdd->prepare('UPDATE utilisateurs SET profile_image = ? WHERE token = ?');
-    $updateAvatar->execute(array($selectedAvatar, $_SESSION['user']));
-
-    // Rediriger vers la page de profil avec un message de succès
-    header('Location: profil.php?success=avatar');
-    die();
+foreach ($files as $file) {
+    // Vérifier si le fichier ne contient pas le mot "saison" ou "film"
+    if (strpos($file, 'saison') === false && strpos($file, 'film') === false) {
+        // Ajouter le nom du fichier à la liste des séries
+        $series[] = $file;
+    }
 }
+
 ?>
 
 <html>
@@ -45,7 +46,10 @@ if (isset($_POST['avatar'])) {
         </div>
     </div>
     <div class="droite">
-        <p><i class="fas fa-search"></i></p>
+        <form method="GET" action="recherche.php">
+            <input type="text" name="query" placeholder="Rechercher..." />
+            <button type="submit"><i class="fas fa-search"></i></button>
+        </form>
         <p><i class="fas fa-bell"></i></p>
         <p>
             <a href="profil.php" class="compte" style="display: flex; align-items: center;">
@@ -65,43 +69,32 @@ if (isset($_POST['avatar'])) {
 <section class="seriefonctionne">
     <h2>Série fonctionnelle</h2>
     <div class="liste">
-        <a href="KimetsunoYaiba.html"><img src="img/thumbnails/Kimetsu no Yaiba saison 1.jpg" alt=""></a>
-        <a href="nagatoro.html"><img src="img/thumbnails/nagatoro/affiche_370x0.jpg" alt=""></a>
-    </div>
-</section>
-
-<section class="série">
-    <h2>Série</h2>
-    <div class="liste">
-        <a href="nagatoro.html"><img src="img/thumbnails/nagatoro/affiche_370x0.jpg" alt=""></a>
-        <a href=""><img src="img/thumbnails/jojo.jpg" alt=""></a>
-        <a href=""><img src="img/thumbnails/fairytail.jpg" alt=""></a>
-        <a href=""><img src="img/thumbnails/bleach.jpg" alt=""></a>
-        <a href=""><img src="img/thumbnails/MHA.jpg" alt=""></a>
-        <a href=""><img src="img/thumbnails/aot.jpg" alt=""></a>
-        <a href="KimetsunoYaiba.html"><img src="img/thumbnails/Kimetsu no Yaiba saison 1.jpg" alt=""></a>
+        <?php foreach ($series as $serie): ?>
+            <?php $thumbnail = 'img/thumbnails/' . pathinfo($serie, PATHINFO_FILENAME) . '.jpg'; ?>
+            <a href="<?php echo $serie; ?>"><img src="<?php echo $thumbnail; ?>" alt=""></a>
+        <?php endforeach; ?>
     </div>
 </section>
 
 <footer>
-      <div class="colonnes">
+    <div class="colonnes">
         <div class="colonne">
-          <p><a href="Nouscontacter.php">Nous contacter</a></p>
+            <p><a href="Nouscontacter.php">Nous contacter</a></p>
         </div>
         <div class="colonne">
-          <p><a href="CGU.php">Conditions d'utilisation</a></p>
+            <p><a href="CGU.php">Conditions d'utilisation</a></p>
         </div>
         <div class="colonne">
-          <p><a href="mentionlégales.php">Mentions légales</a></p>
-          <p><a href="Confidentialite.php">Confidentialité</a></p>
+            <p><a href="mentionlégales.php">Mentions légales</a></p>
+            <p><a href="Confidentialite.php">Confidentialité</a></p>
         </div>
         <div class="colonne">
-          <p><a href="https://www.speedtest.net/">Test de vitesse</a></p>
+            <p><a href="https://www.speedtest.net/">Test de vitesse</a></p>
         </div>
-      </div>
-      <div class="clearfix"></div> <!-- Ajout d'un élément de clearing -->
-      <p class="full-width">Anime Max, France</p> <!-- Ajout d'une classe "full-width" -->
-    </footer>
+    </div>
+    <div class="clearfix"></div>
+    <p class="full-width">Anime Max, France</p>
+</footer>
 <script>
     // Liste des vidéos
     var videos = [
