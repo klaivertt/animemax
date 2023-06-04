@@ -1,25 +1,3 @@
-<?php
-session_start();
-require_once 'config.php';
-
-// Vérifier si l'utilisateur est connecté
-if (!isset($_SESSION['user'])) {
-    header('Location: index.php');
-    die();
-}
-
-// Récupérer les données de l'utilisateur
-$req = $bdd->prepare('SELECT * FROM utilisateurs WHERE token = ?');
-$req->execute(array($_SESSION['user']));
-$data = $req->fetch();
-
-// Vérifier si le paramètre de succès est présent
-if (isset($_GET['success']) && $_GET['success'] === 'avatar') {
-    $successMessage = "L'avatar a bien été modifié !";
-}
-
-?>
-
 
 <!DOCTYPE html>
 <html lang="en">

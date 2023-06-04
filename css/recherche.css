@@ -67,11 +67,10 @@ body {
   
   .round-image {
     border-radius: 50%;
-    height: 50px;
-    width: 50px;
+    height: 65px; /* Définissez la hauteur souhaitée */
+    width: 65px; /* Définissez la largeur souhaitée */
     margin-right: 5px;
   }
-  
   footer {
     background-color: #000;
     padding: 10px 10%;

@@ -67,11 +67,10 @@ body {
   }
   .round-image {
     border-radius: 50%;
-    height: 50px; /* Définissez la hauteur souhaitée */
-    width: 50px; /* Définissez la largeur souhaitée */
+    height: 65px; /* Définissez la hauteur souhaitée */
+    width: 65px; /* Définissez la largeur souhaitée */
     margin-right: 5px;
   }
-  
   .contact {
     max-width: 800px;
     margin: 20px auto;

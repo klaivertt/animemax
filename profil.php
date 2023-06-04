@@ -259,6 +259,8 @@ if (isset($_GET['success']) && $_GET['success'] === 'avatar') {
                                         'avatar12.png',
                                         "avatar22.gif",
                                         "avatar23.gif",
+                                        'avatar24.png',
+                                        "avatar25.gif",
                                         //endKimetsu//
                                         'avatar6.png',
                                         //TokyoGhoul//
@@ -280,6 +282,7 @@ if (isset($_GET['success']) && $_GET['success'] === 'avatar') {
                                         "avatar20.gif",
                                         //pokémon//
                                         "avatar16.gif",
+                                        "avatar26.gif",
                                         //pokémon//
                                         "avatar21.gif",
 
