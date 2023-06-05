@@ -18,7 +18,36 @@ $successMessage = "";
 if (isset($_GET['success']) && $_GET['success'] === 'avatar') {
     $successMessage = "L'avatar a bien été modifié !";
 }
+$idUtilisateur = 1; // ID de l'utilisateur à récupérer
+$sql = "SELECT subscription FROM utilisateurs WHERE id = :idUtilisateur";
+$stmt = $bdd->prepare($sql);
+$stmt->bindParam(':idUtilisateur', $idUtilisateur, PDO::PARAM_INT);
+$stmt->execute();
+$result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+// Récupérer l'abonnement actuel de l'utilisateur à partir de la base de données
+
+
+if ($result) {
+    $subscriptionActuelle = $result["subscription"];
+}
+
+// Mettre à jour l'abonnement de l'utilisateur si un nouvel abonnement est sélectionné
+if (isset($_POST['souscrire']) && isset($_POST['nouvel_abonnement'])) {
+    $nouvelleSubscription = $_POST['nouvel_abonnement'];
+
+    // Mettre à jour la base de données avec la nouvelle subscription
+    $updateSql = "UPDATE utilisateurs SET subscription = :nouvelleSubscription WHERE id = :idUtilisateur";
+    $stmt = $bdd->prepare($updateSql);
+    $stmt->bindParam(':nouvelleSubscription', $nouvelleSubscription, PDO::PARAM_STR);
+    $stmt->bindParam(':idUtilisateur', $idUtilisateur, PDO::PARAM_INT);
+    $stmt->execute();
+
+    // Mettre à jour la subscription actuelle
+    $subscriptionActuelle = $nouvelleSubscription;
+}
 ?>
+
 
 <!doctype html>
 <html lang="en">
@@ -32,156 +61,9 @@ if (isset($_GET['success']) && $_GET['success'] === 'avatar') {
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="icon" href="https://i.ibb.co/pzb7pxM/animemaxred.png">
-    <style>
-        body {
-            background-color: #242424;
-        }
-
-        .btn-custom {
-            background-color: red;
-            color: white;
-        }
-
-        .btn-custom:hover,
-        .btn-custom:focus {
-            background-color: darkred;
-            color: white;
-        }
-
-        .custom-modal-content {
-            background-color: #242424;
-        }
-
-        .custom-modal-content h5.modal-title,
-        .custom-modal-content label {
-            color: white;
-        }
-
-        hr {
-            border-color: white;
-        }
-
-        .profile-image-container {
-            position: relative;
-            width: 300px;
-            height: 300px;
-            overflow: hidden;
-            border-radius: 50%;
-        }
-
-        .profile-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .profile-image-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.6);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            transition: opacity 0.3s;
-            cursor: pointer;
-        }
-
-        .profile-image-container:hover .profile-image-overlay {
-            opacity: 1;
-        }
-
-        .profile-image-overlay .btn {
-            color: white;
-            font-size: 18px;
-        }
-
-        .avatar-item {
-            margin: 10px;
-        }
-
-        .avatar-input {
-            display: none;
-        }
-
-        .avatar-label {
-            display: block;
-            position: relative;
-            cursor: pointer;
-        }
-
-        .avatar-image {
-            width: 125px;
-            height: 125px;
-            border-radius: 50%;
-            cursor: pointer;
-            border: 2px solid transparent;
-            transition: border-color 0.3s;
-        }
-
-        .avatar-image:hover {
-            border-color: red;
-        }
-
-        .avatar-input:checked + .avatar-label .avatar-image {
-            border-color: red;
-        }
-
-        .avatar-list {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-            margin-top: 10px;
-        }
-
-        .avatar-item {
-            margin: 10px 5px;
-        }
-
-        .container {
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-            height: 100vh;
-            padding-left: 50px;
-        }
-
-        .welcome-message-container {
-            margin-left: 50px;
-            text-align: center;
-        }
-
-        @media (max-width: 576px) {
-            .container {
-                flex-direction: column;
-                padding-left: 0;
-                padding-bottom: 20px;
-            }
-
-            .welcome-message-container {
-                margin-left: 0;
-                margin-bottom: 20px;
-            }
-
-            .profile-image-container {
-                width: 150px;
-                height: 150px;
-            }
-
-            .profile-image-overlay .btn {
-                font-size: 16px;
-            }
-        }
-
-        .d-flex.justify-content-start > *:not(:last-child) {
-            margin-right: 5px;
-        }
-    </style>
+    <link rel="stylesheet" href="css/profil.css">
 </head>
+
 
 <body>
     <div class="container">
@@ -221,6 +103,10 @@ if (isset($_GET['success']) && $_GET['success'] === 'avatar') {
                             <button type="button" class="btn btn-custom btn-lg custom-btn mb-3" data-toggle="modal" data-target="#change_password">
                                 Changer mon mot de passe
                             </button>
+                            <button type="button" class="btn btn-custom btn-lg custom-btn mb-3" data-toggle="modal" data-target="#abonnement_modal">
+                                Mon abonnement
+                            </button>
+                            <button type="button" class="btn btn-custom btn-lg custom-btn mb-3" data-toggle="modal" data-target="#profileModal">Profil</button>
 
                             <!-- Bouton Retour -->
                             <button onclick="history.back()" class="btn btn-secondary btn-lg mb-3">Retour</button>
@@ -231,8 +117,34 @@ if (isset($_GET['success']) && $_GET['success'] === 'avatar') {
 
             <!-- Modal -->
             <div class="modal fade" id="change_password" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-                <!-- Modal content... -->
-            </div>
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Changer mon mot de passe</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                         </div>
+                            <div class="modal-body">
+                                <form action="layouts/change_password.php" method="POST">
+                                    <label for='current_password'>Mot de passe actuel</label>
+                                    <input type="password" id="current_password" name="current_password" class="form-control" required/>
+                                    <br />
+                                    <label for='new_password'>Nouveau mot de passe</label>
+                                    <input type="password" id="new_password" name="new_password" class="form-control" required/>
+                                    <br />
+                                    <label for='new_password_retype'>Re tapez le nouveau mot de passe</label>
+                                    <input type="password" id="new_password_retype" name="new_password_retype" class="form-control" required/>
+                                    <br />
+                                    <button type="submit" class="btn btn-success">Sauvegarder</button>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
             <form action="enregistrer_avatar.php" method="POST">
                 <div class="modal fade" id="change_avatar" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
@@ -315,6 +227,97 @@ if (isset($_GET['success']) && $_GET['success'] === 'avatar') {
 
         </div>
     </div>
+
+   <!-- Modal HTML -->
+<div class="modal fade" id="abonnement_modal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content custom-modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mon abonnement</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="card-deck">
+                    <!-- Abonnement gratuit -->
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <h5 class="card-title">Abonnement gratuit</h5>
+                            <p class="card-text">Limite la qualité vidéo à 720p</p>
+                            <p class="card-text">Affiche des publicités</p>
+                        </div>
+                        <div class="card-footer">
+                            <?php if ($subscriptionActuelle == "Abonnement gratuit") : ?>
+                                <button type="button" class="btn btn-custom btn-lg custom-btn" disabled>Abonnement actuel</button>
+                            <?php else : ?>
+                                <form method="post">
+                                    <input type="hidden" name="nouvel_abonnement" value="Abonnement gratuit">
+                                    <button type="submit" name="souscrire" class="btn btn-custom btn-lg custom-btn">Souscrire</button>
+                                </form>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+
+                   <!-- Abonnement Standard HD -->
+<div class="card text-center">
+    <div class="card-body">
+        <h5 class="card-title">Abonnement Standard HD</h5>
+        <p class="card-text">Qualité vidéo jusqu'à 1080p</p>
+    </div>
+    <div class="card-footer">
+        <?php if ($subscriptionActuelle != "Abonnement Standard HD") : ?>
+            <form method="post" action="paiement.php"> <!-- Modifier "page_paiement.php" avec le nom de votre page de paiement -->
+                <input type="hidden" name="nouvel_abonnement" value="Abonnement Standard HD">
+                <button type="submit" name="souscrire" class="btn btn-custom btn-lg custom-btn">Souscrire</button>
+            </form>
+        <?php else : ?>
+            <button type="button" class="btn btn-custom btn-lg custom-btn" disabled>Abonnement actuel</button>
+        <?php endif; ?>
+    </div>
+</div>
+
+<!-- Abonnement Premium -->
+<div class="card text-center">
+    <div class="card-body">
+        <h5 class="card-title">Abonnement Premium</h5>
+        <p class="card-text">Qualité vidéo jusqu'à 4K</p>
+    </div>
+    <div class="card-footer">
+        <?php if ($subscriptionActuelle != "Abonnement Premium") : ?>
+            <form method="post" action="paiement.php"> <!-- Modifier "page_paiement.php" avec le nom de votre page de paiement -->
+                <input type="hidden" name="nouvel_abonnement" value="Abonnement Premium">
+                <button type="submit" name="souscrire" class="btn btn-custom btn-lg custom-btn">Souscrire</button>
+            </form>
+        <?php else : ?>
+            <button type="button" class="btn btn-custom btn-lg custom-btn" disabled>Abonnement actuel</button>
+        <?php endif; ?>
+    </div>
+</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content custom-modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Profil Utilisateur</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Pseudo: <?php echo $data['pseudo']?></p>
+        <p>Email: <?php echo $data['email']?></p>
+        <p>Date d'inscription: <?php echo $data['date_inscription']?></p>
+        <p>Abonnement: <?php echo $data['subscription']?></p>
+      </div>
+    </div>
+  </div>
+</div>
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

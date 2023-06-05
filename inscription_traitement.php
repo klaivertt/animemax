@@ -39,17 +39,21 @@
                             */
 
                             // Avatar par défaut
-                            $defaultAvatar = 'avatar1.jpg';
+                            $defaultAvatar = 'avatar1.png';
+
+                            // Abonnement par défaut
+                            $defaultSubscription = 'Abonnement gratuit';
 
                             // On insère dans la base de données
-                            $insert = $bdd->prepare('INSERT INTO utilisateurs(pseudo, email, password, profile_image, ip, token) VALUES(:pseudo, :email, :password, :profile_image, :ip, :token)');
+                            $insert = $bdd->prepare('INSERT INTO utilisateurs(pseudo, email, password, profile_image, ip, token, subscription) VALUES(:pseudo, :email, :password, :profile_image, :ip, :token, :subscription)');
                             $insert->execute(array(
                                 'pseudo' => $pseudo,
                                 'email' => $email,
                                 'password' => $password,
                                 'profile_image' => $defaultAvatar,
                                 'ip' => $ip,
-                                'token' => bin2hex(openssl_random_pseudo_bytes(64))
+                                'token' => bin2hex(openssl_random_pseudo_bytes(64)),
+                                'subscription' => $defaultSubscription
                             ));
                             // On redirige avec le message de succès
                             header('Location:inscription.php?reg_err=success');

@@ -1,196 +1,203 @@
-body{
-  padding: 0;
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
+body {
+  background-color: #242424;
 }
-#home{
+
+.btn-custom {
+  background-color: red;
+  color: white;
+}
+
+.btn-custom:hover,
+.btn-custom:focus {
+  background-color: darkred;
+  color: white;
+}
+
+.custom-modal-content {
+  background-color: #242424;
+}
+
+.custom-modal-content h5.modal-title,
+.custom-modal-content label {
+  color: white;
+}
+
+hr {
+  border-color: white;
+}
+
+.profile-image-container {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.profile-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
-  width: 100%;
-  
-  background: url('https://ibb.co/k0j1g2k')no-repeat;
-  background-position: center;
-  background-size: cover;
-}
-* {
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Open Sans', sans-serif;
-  margin: 0;
-}
-
-img {
-  overflow-clip-margin: content-box;
-  overflow: auto;
-}
-nav {
-  background-color: transparent;
-  height: 100px;
-  display: flex;
-  align-items: center;
-}
-
-nav img {
-  width: 300
-}
-
-nav-bar a {
-  margin-left: 10px;
-  font-weight: 400;
-}
-
-form {
-  background-color: rgba(0, 0, 0, .75);
-  width: 400px;
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-  color: #fff;
-}
-
-input {
-  padding: 16px 20px;
-  margin: 5px 0;
-  border: none;
-  border-radius: 4px;
-  background-color: #333;
-  font-size: 16px;
-  color: #fff;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
-  -o-border-radius: 4px;
-  opacity: .8;
-  outline: none;
-}
-
-
-input[type=submit]:hover {
-  background-color: rgb(173, 7, 15);
+  opacity: 0;
+  transition: opacity 0.3s;
   cursor: pointer;
 }
 
-input[type=email]:focus, 
-input[type=password]:focus,
-input[type=email]:hover, 
-input[type=password]:hover {
+.profile-image-container:hover .profile-image-overlay {
   opacity: 1;
-  background-color: rgb(34, 34, 34);
 }
 
-label {
-  color: #ff0000;
-  margin-left: 10px;
+.profile-image-overlay .btn {
+  color: white;
+  font-size: 18px;
 }
 
-p {
-  color: #737373;
+.avatar-item {
+  margin: 10px;
 }
 
-a {
-  color: #fff;
+.avatar-input {
+  display: none;
 }
 
-.content {
-  margin: 0 10%;
-  margin-top: 150px;
+.avatar-label {
+  display: block;
+  position: relative;
+  cursor: pointer;
 }
 
-.row {
-  display: flex;
-  justify-content: center;
-}
-
-#profil-page,
-#acceuil-page {
-  background-color: #141414;
-}
-
-h1 {
-  color: #000000;
-  font-size: 3em;
-}
-
-.profil img {
+.avatar-image {
+  width: 125px;
+  height: 125px;
+  border-radius: 50%;
+  cursor: pointer;
   border: 2px solid transparent;
-  width: 100%;
+  transition: border-color 0.3s;
 }
 
-.profil img,
-.profil p {
-  transition: all .3s;
-  -webkit-transition: all .3s;
-  -moz-transition: all .3s;
-  -ms-transition: all .3s;
-  -o-transition: all .3s;
+.avatar-image:hover {
+  border-color: red;
 }
 
-.profil:hover img {
-  border: 2px solid #fff;
+.avatar-input:checked + .avatar-label .avatar-image {
+  border-color: red;
 }
 
-.profil:hover p {
-  color: #fff;
+.avatar-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
 }
 
-a {
-  text-decoration: none;
+.avatar-item {
+  margin: 10px 5px;
 }
 
-.btn {
-  text-transform: uppercase;
-  border: 1px solid #808080;
-  padding: .5em 1.5em;
-  color: #000000;
+.container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100vh;
+  padding-left: 50px;
+}
+
+.welcome-message-container {
+  margin-left: 50px;
+  text-align: center;
+}
+
+@media (max-width: 576px) {
+  .container {
+      flex-direction: column;
+      padding-left: 0;
+      padding-bottom: 20px;
+  }
+
+  .welcome-message-container {
+      margin-left: 0;
+      margin-bottom: 20px;
+  }
+
+  .profile-image-container {
+      width: 150px;
+      height: 150px;
+  }
+
+  .profile-image-overlay .btn {
+      font-size: 16px;
+  }
+}
+
+.d-flex.justify-content-start > *:not(:last-child) {
+  margin-right: 5px;
+}
+
+/* CSS pour les cartes */
+.card {
+  border: none;
+  background-color: #242424;
+  color: white;
+}
+
+.card-title {
   font-weight: bold;
-  margin-top: 50px;
-  font-size: .9em;
-  transition: .3s;
-  -webkit-transition: .3s;
-  -moz-transition: .3s;
-  -ms-transition: .3s;
-  -o-transition: .3s;
 }
 
-.btn:hover {
-  border: 1px solid #fff;
-  color: #000000;
+.card-text {
+  color: #d1d1d1;
 }
 
-.space-between {
-  justify-content: space-between;
+.card-footer {
+  border-top: none;
+  background-color: #242424;
 }
 
-video {
-  width: 100%;
+/* CSS pour la modal "abonnement_modal" */
+#abonnement_modal .modal-dialog {
+  max-width: 800px;
 }
 
-#video {
-  height: 600px;
-  overflow: hidden;
-}
-
-#acceuil-pages nav {
+/* Effet métallisé pour la partie "card-body" */
+.card-body::before {
+  content: "";
   position: absolute;
-  width: 100%;
   top: 0;
   left: 0;
-}
-
-.content2 {
-  margin: 0 10%;
-  margin-top: 150px;
-}
-
-h2 {
-  color: #fff;
-}
-
-#image {
   width: 100%;
-  height: 50px;
+  height: 100%;
+  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.07) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.07) 50%, rgba(255, 255, 255, 0.07) 75%, transparent 75%, transparent);
+  background-size: 40px 40px;
+}
+
+.card-body::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(45deg, rgba(0, 0, 0, 0.2) 25%, transparent 25%, transparent 50%, rgba(0, 0, 0, 0.2) 50%, rgba(0, 0, 0, 0.2) 75%, transparent 75%, transparent);
+  background-size: 40px 40px;
+}
+
+.card-body {
+  position: relative;
+  z-index: 1;
+}
+.custom-modal-content {
+  color: white;
 }

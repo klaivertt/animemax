@@ -13,6 +13,16 @@ $req = $bdd->prepare('SELECT * FROM utilisateurs WHERE token = ?');
 $req->execute(array($_SESSION['user']));
 $data = $req->fetch();
 
+// Récupérer l'ID de l'utilisateur
+$idUtilisateur = $data['id'];
+
+// Récupérer l'adresse IP de l'utilisateur
+$ip = $_SERVER['REMOTE_ADDR'];
+
+// Mettre à jour l'adresse IP dans la base de données
+$updateSql = "UPDATE utilisateurs SET ip = '$ip' WHERE id = $idUtilisateur";
+$bdd->query($updateSql);
+
 // Récupérer les fichiers HTML dans le répertoire
 $files = glob('*.html');
 $series = array();
@@ -24,7 +34,6 @@ foreach ($files as $file) {
         $series[] = $file;
     }
 }
-
 ?>
 
 <html>
